@@ -38,6 +38,8 @@ export function Reveal({
         );
         io.observe(el);
         return () => io.disconnect();
+        // visible намеренно не в deps: observer создаётся один раз и сам себя disconnect'ит при первом intersection
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
