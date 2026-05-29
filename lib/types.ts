@@ -71,8 +71,10 @@ export interface SiteContent {
 }
 
 // ── Состояние квиза (SPEC §4) ──
+// step — number (а не union 0..3): reducer добавляет +1 и TS не справляется с narrow'ом;
+// диапазон 0..3 гарантируется логикой reducer'а и тестами.
 export interface QuizState {
-    step: 0 | 1 | 2 | 3;
+    step: number;
     scores: Record<ProfileKey, number>;
     finished: boolean;
     result: ProfileKey | null;
