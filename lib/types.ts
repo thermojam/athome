@@ -69,3 +69,27 @@ export interface SiteContent {
     footer: { name: string; tagline: string };
     stickyCta: string;
 }
+
+// ── Состояние квиза (SPEC §4) ──
+export interface QuizState {
+    step: 0 | 1 | 2 | 3;
+    scores: Record<ProfileKey, number>;
+    finished: boolean;
+    result: ProfileKey | null;
+}
+
+// ── Аналитика: типобезопасные цели (SPEC §4, §9.3) ──
+export type Goal =
+    | 'quiz_start'
+    | 'quiz_complete'
+    | `lead_click_${ProfileKey}`
+    | 'lead_click_direct'
+    | 'objection_open';
+
+// ── Фаза 2: payload заявки (не используется в MVP) ──
+export interface LeadPayload {
+    name: string;
+    contact: string;
+    profile: ProfileKey;
+    source: 'quiz' | 'direct';
+}
