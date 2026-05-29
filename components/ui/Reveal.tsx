@@ -12,17 +12,14 @@ export function Reveal({
     delayMs?: number;
 }) {
     const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(() =>
+        typeof window !== 'undefined'
+            ? (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false)
+            : false
+    );
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-
-        const reduced =
-            window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-        if (reduced) {
-            setVisible(true);
-            return;
-        }
+        if (visible) return;
 
         const el = ref.current;
         if (!el) return;

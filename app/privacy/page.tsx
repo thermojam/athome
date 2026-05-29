@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Политика конфиденциальности · Тренер у дома',
@@ -63,7 +64,7 @@ export default function PrivacyPage() {
             </section>
 
             <p className="mt-12">
-                <a href="/" className="text-sm text-tx2 underline hover:text-tx">← На главную</a>
+                <Link href="/" className="text-sm text-tx2 underline hover:text-tx">← На главную</Link>
             </p>
         </main>
     );

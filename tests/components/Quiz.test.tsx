@@ -11,7 +11,6 @@ describe('Quiz (§15.4)', () => {
   });
   afterEach(() => {
     vi.unstubAllEnvs();
-    // @ts-ignore cleanup
     delete window.ym;
   });
 
@@ -53,7 +52,6 @@ describe('Quiz (§15.4)', () => {
 
   it('fires quiz_start once on first answer and quiz_complete once on result', async () => {
     const ym = vi.fn();
-    // @ts-ignore inject
     window.ym = ym;
     const user = userEvent.setup();
     render(<Quiz />);
