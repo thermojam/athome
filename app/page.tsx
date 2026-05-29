@@ -2,6 +2,7 @@ import { Hero } from '@/components/sections/Hero';
 import { Problem } from '@/components/sections/Problem';
 import { Map } from '@/components/sections/Map';
 import { Transformation } from '@/components/sections/Transformation';
+import { Quiz } from '@/components/quiz/Quiz';
 import { Objections } from '@/components/sections/Objections';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { StickyCta } from '@/components/ui/StickyCta';
@@ -14,6 +15,7 @@ export default function Home() {
       <Problem />
       <Map />
       <Transformation />
+      <Quiz />
       <Objections />
       <FinalCta />
       <footer className="border-t border-[--line] bg-bg2 px-4 py-10 text-center">
