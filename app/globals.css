@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
+/* ── Tailwind theme tokens (SPEC §5) ── */
+@theme {
+  /* Цвет / свет */
+  --color-cyan: #2CE6FF;
+  --color-violet: #8B5CFF;
+  --color-pink: #FF4FD8;
+  --color-green: #36FF9D;
+  --color-orange: #FF9F43;
+  --color-blue: #4D7DFF;
+
+  --color-bg-primary: #0E1117;
+  --color-bg2: #151923;
+  --color-bg3: #1B2030;
+
+  --color-tx: #E8ECF4;
+  --color-tx2: #9AA3B5;
+  --color-tx3: #5E6678;
+
+  /* Типографика — алиасим переменные next/font на theme-токены */
+  --font-display: var(--font-gerhaus);
+  --font-body: var(--font-nunito);
+  --font-mono: var(--font-jbm);
+}
+
+/* ── Кастомные переменные вне @theme (radii, glass, line, blur) ── */
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+  --radius-md: 22px;
+  --radius-lg: 30px;
+  --radius-xl: 42px;
+  --blur-md: 18px;
+  --glass: rgba(255, 255, 255, 0.04);
+  --line: rgba(255, 255, 255, 0.09);
 }
 
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+/* ── Глобальный body ── */
+html {
+  background: var(--color-bg-primary);
+  color: var(--color-tx);
 }
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
-
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-tx);
+  font-family: var(--font-body), 'Nunito', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Reduced motion: глобально отключаем transition/animation ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
