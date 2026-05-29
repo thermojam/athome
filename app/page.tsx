@@ -3,6 +3,8 @@ import { Problem } from '@/components/sections/Problem';
 import { Map } from '@/components/sections/Map';
 import { Transformation } from '@/components/sections/Transformation';
 import { FinalCta } from '@/components/sections/FinalCta';
+import { StickyCta } from '@/components/ui/StickyCta';
+import { CONTENT } from '@/lib/quiz-data';
 
 export default function Home() {
   return (
@@ -11,7 +13,18 @@ export default function Home() {
       <Problem />
       <Map />
       <Transformation />
+      {/* Quiz и Objections подключим в фазе E */}
       <FinalCta />
+      <footer className="border-t border-[--line] bg-bg2 px-4 py-10 text-center">
+        <p className="font-display text-base text-tx">{CONTENT.footer.name}</p>
+        <p className="mt-2 text-xs text-tx3">{CONTENT.footer.tagline}</p>
+        <p className="mt-4 text-xs text-tx3">
+          <a href="/privacy" className="underline hover:text-tx2">
+            Политика конфиденциальности
+          </a>
+        </p>
+      </footer>
+      <StickyCta />
     </>
   );
 }
