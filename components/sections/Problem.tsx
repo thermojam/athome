@@ -1,11 +1,19 @@
+import {Bone, Repeat, BatteryLow, type LucideIcon} from 'lucide-react';
 import {CONTENT} from '@/lib/quiz-data';
+import type {ProblemIcon} from '@/lib/types';
+
+const ICON_MAP: Record<ProblemIcon, LucideIcon> = {
+    bone: Bone,
+    repeat: Repeat,
+    'battery-low': BatteryLow,
+};
 
 export function Problem() {
     const {kicker, h2, cards, summaryLead, summaryRest} = CONTENT.problem;
     return (
         <section
             id="pain"
-            className="mx-auto w-full max-w-4xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
             <div className="flex flex-col gap-4">
                 <span className="kicker">◆ {kicker}</span>
@@ -15,17 +23,29 @@ export function Problem() {
             </div>
 
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-                {cards.map((c) => (
-                    <div key={c.title} className="card-md flex flex-col gap-3">
-                        <span className="text-3xl" aria-hidden>
-                            {c.emoji}
-                        </span>
-                        <h3 className="font-display text-lg uppercase tracking-tight text-tx">
-                            {c.title}
-                        </h3>
-                        <p className="text-sm text-tx2">{c.text}</p>
-                    </div>
-                ))}
+                {cards.map((c) => {
+                    const Icon = ICON_MAP[c.icon];
+                    return (
+                        <div key={c.title} className="card-md flex flex-col gap-4">
+                            <span
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl"
+                                style={{
+                                    border: '1px solid rgba(44,230,255,0.35)',
+                                    boxShadow: 'inset 0 0 14px rgba(44,230,255,0.18), var(--edge-highlight)',
+                                    color: 'var(--color-cyan)',
+                                    background: 'rgba(44,230,255,0.04)',
+                                }}
+                                aria-hidden
+                            >
+                                <Icon size={22} strokeWidth={1.7}/>
+                            </span>
+                            <h3 className="font-display text-lg uppercase tracking-tight text-tx">
+                                {c.title}
+                            </h3>
+                            <p className="text-sm text-tx2">{c.text}</p>
+                        </div>
+                    );
+                })}
             </div>
 
             <div className="card mt-10">

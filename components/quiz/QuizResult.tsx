@@ -57,14 +57,14 @@ export function QuizResult({
                     href={tgHref}
                     goal={`lead_click_${profile.key}` as const}
                     external
-                    className="btn btn-primary"
+                    className="btn btn-lg btn-primary"
                 >
                     Записаться на бесплатную встречу →
                 </TrackedLink>
                 <button
                     type="button"
                     onClick={onRestart}
-                    className="btn btn-secondary"
+                    className="btn btn-lg btn-secondary"
                 >
                     {CONTENT.quiz.restart}
                 </button>

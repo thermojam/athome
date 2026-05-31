@@ -8,26 +8,27 @@ import {Objections} from '@/components/sections/Objections';
 import {FinalCta} from '@/components/sections/FinalCta';
 import {StickyCta} from '@/components/ui/StickyCta';
 import {Bridge} from '@/components/ui/Bridge';
+import {Reveal} from '@/components/ui/Reveal';
 import {CONTENT, BRIDGES} from '@/lib/quiz-data';
 
 export default function Home() {
     return (
         <>
             <Hero/>
-            <Bridge data={BRIDGES.toProblem}/>
-            <Problem/>
-            <Bridge data={BRIDGES.toMap}/>
-            <LocationMap/>
-            <Bridge data={BRIDGES.toTransformation}/>
-            <Transformation/>
-            <Bridge data={BRIDGES.toQuiz}/>
-            <Quiz/>
-            <Bridge data={BRIDGES.toBooking}/>
-            <BookingSlot/>
-            <Bridge data={BRIDGES.toObjections}/>
-            <Objections/>
-            <FinalCta/>
-            <footer className="mx-auto w-full max-w-4xl px-4 py-12 text-center">
+            <Reveal><Bridge data={BRIDGES.toProblem}/></Reveal>
+            <Reveal><Problem/></Reveal>
+            <Reveal><Bridge data={BRIDGES.toMap}/></Reveal>
+            <Reveal><LocationMap/></Reveal>
+            <Reveal><Bridge data={BRIDGES.toTransformation}/></Reveal>
+            <Reveal><Transformation/></Reveal>
+            <Reveal><Bridge data={BRIDGES.toQuiz}/></Reveal>
+            <Reveal><Quiz/></Reveal>
+            <Reveal><Bridge data={BRIDGES.toBooking}/></Reveal>
+            <Reveal><BookingSlot/></Reveal>
+            <Reveal><Bridge data={BRIDGES.toObjections}/></Reveal>
+            <Reveal><Objections/></Reveal>
+            <Reveal><FinalCta/></Reveal>
+            <footer className="mx-auto w-full max-w-[var(--container)] px-4 py-12 text-center">
                 <div className="border-t border-[--line-soft] pt-10">
                     <p className="font-display text-base uppercase tracking-tight text-tx">
                         {CONTENT.footer.name}

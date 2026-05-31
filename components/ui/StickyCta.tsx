@@ -26,7 +26,7 @@ export function StickyCta() {
         >
             <a
                 href="#test"
-                className="btn btn-primary pointer-events-auto w-full max-w-md"
+                className="btn btn-md btn-primary pointer-events-auto w-full max-w-md"
             >
                 {CONTENT.stickyCta}
             </a>

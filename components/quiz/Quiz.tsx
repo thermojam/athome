@@ -39,8 +39,9 @@ export function Quiz() {
     return (
         <section
             id="test"
-            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
+            <div className="mx-auto max-w-3xl">
             <div className="flex flex-col gap-4">
                 <span className="kicker">◆ {CONTENT.quiz.kicker}</span>
                 <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
@@ -61,6 +62,7 @@ export function Quiz() {
                         <QuizResult profile={PROFILES[state.result]} onRestart={handleReset}/>
                     ) : null}
                 </div>
+            </div>
             </div>
         </section>
     );

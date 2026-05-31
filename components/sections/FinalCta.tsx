@@ -8,8 +8,9 @@ export function FinalCta() {
     return (
         <section
             id="final"
-            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
+            <div className="mx-auto max-w-3xl">
             <div className="card text-center">
                 <span className="kicker">◆ {kicker}</span>
                 <h2 className="mt-4 font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
@@ -17,14 +18,14 @@ export function FinalCta() {
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-base text-tx2">{text}</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                    <a href="#test" className="btn btn-primary">
+                    <a href="#test" className="btn btn-lg btn-primary">
                         {cta1}
                     </a>
                     <TrackedLink
                         href={tgHref}
                         goal="lead_click_direct"
                         external
-                        className="btn btn-secondary"
+                        className="btn btn-lg btn-secondary"
                     >
                         {cta2}
                     </TrackedLink>
@@ -32,6 +33,7 @@ export function FinalCta() {
                 <p className="mt-5 font-mono text-xs uppercase tracking-[0.14em] text-tx3">
                     {guarantee}
                 </p>
+            </div>
             </div>
         </section>
     );

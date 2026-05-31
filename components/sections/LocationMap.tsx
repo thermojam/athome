@@ -12,7 +12,7 @@ export function LocationMap() {
     return (
         <section
             id="map"
-            className="relative mx-auto w-full max-w-6xl px-4 py-20 md:py-28"
+            className="relative mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
             <div className="grid gap-10 md:grid-cols-[1fr_minmax(360px,460px)_1fr] md:items-center md:gap-12">
                 {/* ── Левая колонка ── */}

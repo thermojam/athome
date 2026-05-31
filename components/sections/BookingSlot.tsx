@@ -53,8 +53,9 @@ export function BookingSlot() {
     return (
         <section
             id="booking"
-            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
+            <div className="mx-auto max-w-3xl">
             <div className="card">
                 <div className="flex flex-col gap-3">
                     <span className="kicker">◆ {kicker}</span>
@@ -116,7 +117,7 @@ export function BookingSlot() {
                     })}
                 </div>
 
-                <div className="mt-8 flex flex-col items-stretch gap-3">
+                <div className="mt-8 flex flex-col items-center gap-3">
                     {selected && tgHref ? (
                         <a
                             data-testid="booking-cta"
@@ -124,7 +125,8 @@ export function BookingSlot() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={handleTake}
-                            className="btn btn-slot w-full"
+                            className="btn btn-md btn-primary w-full"
+                            style={{maxWidth: 340}}
                         >
                             {ctaLabel} {selected.day} · {selected.time} →
                         </a>
@@ -133,7 +135,8 @@ export function BookingSlot() {
                             data-testid="booking-cta"
                             type="button"
                             aria-disabled="true"
-                            className="btn btn-slot w-full"
+                            className="btn btn-md btn-primary w-full"
+                            style={{maxWidth: 340}}
                         >
                             {ctaLabel} →
                         </button>
@@ -142,6 +145,7 @@ export function BookingSlot() {
                         {honestyNote}
                     </p>
                 </div>
+            </div>
             </div>
         </section>
     );

@@ -2,6 +2,11 @@
 
 import {useEffect, useRef, useState, type ReactNode} from 'react';
 
+/**
+ * v3.1 §5.6: появление по IntersectionObserver — добавляет класс .in.
+ * CSS-класс .reveal / .reveal.in лежит в globals.css.
+ * prefers-reduced-motion отключает анимацию через медиа-запрос там же.
+ */
 export function Reveal({
                            children,
                            className = '',
@@ -15,15 +20,13 @@ export function Reveal({
     const [visible, setVisible] = useState(() =>
         typeof window !== 'undefined'
             ? (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false)
-            : false
+            : false,
     );
 
     useEffect(() => {
         if (visible) return;
-
         const el = ref.current;
         if (!el) return;
-
         const io = new IntersectionObserver(
             (entries) => {
                 for (const e of entries) {
@@ -34,22 +37,19 @@ export function Reveal({
                     }
                 }
             },
-            {rootMargin: '0px 0px -10% 0px', threshold: 0.1},
+            {rootMargin: '0px 0px -10% 0px', threshold: 0.12},
         );
         io.observe(el);
         return () => io.disconnect();
-        // visible намеренно не в deps: observer создаётся один раз и сам себя disconnect'ит при первом intersection
+        // visible намеренно не в deps: observer создаётся один раз
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div
             ref={ref}
-            data-reveal={visible ? 'visible' : 'hidden'}
-            style={{transitionDelay: visible ? `${delayMs}ms` : '0ms'}}
-            className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            } ${className}`}
+            className={`reveal${visible ? ' in' : ''} ${className}`}
+            style={{transitionDelay: visible && delayMs ? `${delayMs}ms` : undefined}}
         >
             {children}
         </div>

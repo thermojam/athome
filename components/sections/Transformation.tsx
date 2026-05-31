@@ -5,7 +5,7 @@ export function Transformation() {
     return (
         <section
             id="bab"
-            className="mx-auto w-full max-w-5xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
             <div className="flex flex-col gap-4">
                 <span className="kicker">◆ {kicker}</span>

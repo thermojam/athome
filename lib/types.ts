@@ -1,5 +1,8 @@
 export type ProfileKey = 'health' | 'body' | 'energy';
 
+// ── v3.1 §5.5: иконки болей — ключи Lucide-компонентов ──
+export type ProblemIcon = 'bone' | 'repeat' | 'battery-low';
+
 export interface Profile {
     key: ProfileKey;
     badge: string;
@@ -70,7 +73,7 @@ export interface SiteContent {
     problem: {
         kicker: string;
         h2: string;
-        cards: { emoji: string; title: string; text: string }[];
+        cards: { icon: ProblemIcon; title: string; text: string }[];
         summaryLead: string;
         summaryRest: string;
     };

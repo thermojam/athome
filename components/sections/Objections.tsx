@@ -1,6 +1,7 @@
 'use client';
 
 import {useRef, useState} from 'react';
+import {Plus} from 'lucide-react';
 import {CONTENT} from '@/lib/quiz-data';
 import {reachGoal} from '@/lib/analytics';
 
@@ -21,8 +22,9 @@ export function Objections() {
     return (
         <section
             id="objections"
-            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+            className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
         >
+            <div className="mx-auto max-w-3xl">
             <div className="flex flex-col gap-4">
                 <span className="kicker">◆ {kicker}</span>
                 <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
@@ -46,10 +48,10 @@ export function Objections() {
                                 </span>
                                 <span
                                     aria-hidden
-                                    className="font-mono text-cyan transition-transform"
+                                    className="text-cyan transition-transform"
                                     style={{transform: open ? 'rotate(45deg)' : 'rotate(0deg)'}}
                                 >
-                                    +
+                                    <Plus size={18} strokeWidth={2}/>
                                 </span>
                             </button>
                             {open && (
@@ -58,6 +60,7 @@ export function Objections() {
                         </div>
                     );
                 })}
+            </div>
             </div>
         </section>
     );

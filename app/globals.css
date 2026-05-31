@@ -55,12 +55,21 @@
     radial-gradient(120% 80% at 50% -10%, rgba(139,92,255,0.16) 0%, rgba(139,92,255,0) 45%),
     radial-gradient(90% 60% at 80% 0%,   rgba(44,230,255,0.09) 0%, rgba(44,230,255,0) 50%),
     linear-gradient(180deg, #121624 0%, #0E1117 40%, #0A0D13 100%);
+
+  /* v3.1: единый контейнер, ритм секций, размеры кнопок, кривая появления */
+  --container:    1080px;
+  --space-section: 64px;
+  --btn-lg-pad: 16px 30px; --btn-lg-fs: 17px;
+  --btn-md-pad: 13px 24px; --btn-md-fs: 15px;
+  --btn-sm-pad: 10px 18px; --btn-sm-fs: 13px;
+  --ease-soft: cubic-bezier(.2,.7,.2,1);
 }
 
 /* ── ПРИЁМ 1: фон body — градиентная атмосфера, fixed чтобы не плыл при скролле ── */
 html {
   background: var(--color-bg-primary);
   color: var(--color-tx);
+  scroll-behavior: smooth; /* v3.1 §5.7: плавный скролл от мостиков-якорей */
 }
 body {
   background-color: var(--color-bg-primary);
@@ -121,48 +130,36 @@ body {
   .hairline { border-bottom: 1px solid var(--line-soft); }
   .hairline:last-child { border-bottom: none; }
 
-  /* ПРИЁМ 5: кнопки */
+  /* ПРИЁМ 5: кнопки (v3.1 §5.4 — система размеров lg/md/sm, чистый cyan для primary) */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 9px;
     font-family: var(--font-body), 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 16px;
-    padding: 15px 28px;
     border-radius: 40px;
     cursor: pointer;
     text-decoration: none;
     border: none;
-    transition: transform .15s ease, box-shadow .25s ease, opacity .15s ease;
+    transition: transform .15s ease, box-shadow .25s ease, opacity .15s ease, border-color .2s ease;
   }
+  .btn-lg { padding: var(--btn-lg-pad); font-size: var(--btn-lg-fs); }
+  .btn-md { padding: var(--btn-md-pad); font-size: var(--btn-md-fs); }
+  .btn-sm { padding: var(--btn-sm-pad); font-size: var(--btn-sm-fs); }
   .btn-primary {
-    background: linear-gradient(100deg, var(--color-cyan), #20B8E8);
+    background: linear-gradient(100deg, var(--color-cyan), #22B4E6);
     color: #06121b;
     box-shadow: 0 0 0 1px rgba(44,230,255,0.5),
-                0 8px 30px rgba(44,230,255,0.35);
+                0 8px 28px rgba(44,230,255,0.32);
   }
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 0 1px rgba(44,230,255,0.7),
                 0 12px 44px rgba(44,230,255,0.5);
   }
-  .btn-slot {
-    background: linear-gradient(100deg, var(--color-violet), var(--color-blue) 50%, var(--color-cyan));
-    color: #06121b;
-    box-shadow: 0 0 0 1px rgba(139,92,255,0.4),
-                0 12px 36px rgba(139,92,255,0.45),
-                var(--glow-violet);
-  }
-  .btn-slot:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 0 1px rgba(139,92,255,0.6),
-                0 16px 48px rgba(139,92,255,0.55),
-                var(--glow-violet);
-  }
-  .btn-slot:disabled,
-  .btn-slot[aria-disabled="true"] {
+  .btn-primary:disabled,
+  .btn-primary[aria-disabled="true"] {
     opacity: 0.5;
     pointer-events: none;
     cursor: not-allowed;
@@ -174,7 +171,10 @@ body {
     color: var(--color-tx);
     box-shadow: var(--edge-highlight);
   }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.22); }
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.22);
+  }
 
   /* пилюли (hero/booking/list-теги) */
   .pill {
@@ -205,6 +205,18 @@ body {
     align-items: center;
     gap: 8px;
   }
+
+  /* v3.1 §5.6: появление по IntersectionObserver — плавное, на GPU */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s var(--ease-soft), transform .7s var(--ease-soft);
+    will-change: opacity, transform;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── @keyframes (вне @layer — keyframes должны быть в top-level) ── */
@@ -220,13 +232,18 @@ body {
 .radar-ring--d2 { animation-delay: 1s; }
 .radar-ring--d3 { animation-delay: 2s; }
 
-/* ── Reduced motion: глушим радар, transition, reveal ── */
+/* ── Reduced motion: глушим радар, transition, reveal, плавный скролл ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto !important; }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
   .radar-ring {
     animation: none !important;
