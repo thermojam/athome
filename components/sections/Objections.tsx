@@ -1,59 +1,63 @@
 'use client';
 
 import {useRef, useState} from 'react';
-import {CONTENT, BRIDGES} from '@/lib/quiz-data';
-import {Bridge} from '@/components/ui/Bridge';
+import {CONTENT} from '@/lib/quiz-data';
 import {reachGoal} from '@/lib/analytics';
 
 export function Objections() {
+    const {kicker, h2, items} = CONTENT.objections;
     const [openIdx, setOpenIdx] = useState<number | null>(null);
-    const goalSent = useRef(false);
+    const firedRef = useRef(false);
 
-    const toggle = (idx: number) => {
-        setOpenIdx((prev) => (prev === idx ? null : idx));
-        if (!goalSent.current) {
-            goalSent.current = true;
+    const handleToggle = (i: number) => {
+        const willOpen = openIdx !== i;
+        setOpenIdx(willOpen ? i : null);
+        if (willOpen && !firedRef.current) {
+            firedRef.current = true;
             reachGoal('objection_open');
         }
     };
 
     return (
-        <section id="objections" className="border-b border-[--line] bg-bg2 px-4 py-20 md:py-28">
-            <div className="mx-auto max-w-3xl">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-tx2">
-                    {CONTENT.objections.kicker}
-                </p>
-                <h2 className="mt-2 font-display text-2xl text-tx md:text-4xl">
-                    {CONTENT.objections.h2}
+        <section
+            id="objections"
+            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+        >
+            <div className="flex flex-col gap-4">
+                <span className="kicker">◆ {kicker}</span>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
+                    {h2}
                 </h2>
+            </div>
 
-                <ul className="mt-8 space-y-3">
-                    {CONTENT.objections.items.map((item, idx) => {
-                        const open = openIdx === idx;
-                        const panelId = `obj-panel-${idx}`;
-                        return (
-                            <li key={item.q} className="rounded-[--radius-md] border border-[--line] bg-[--glass]">
-                                <button
-                                    type="button"
-                                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                                    aria-expanded={open}
-                                    aria-controls={panelId}
-                                    onClick={() => toggle(idx)}
+            <div className="card mt-10">
+                {items.map((item, i) => {
+                    const open = openIdx === i;
+                    return (
+                        <div key={item.q} className="hairline">
+                            <button
+                                type="button"
+                                aria-expanded={open}
+                                onClick={() => handleToggle(i)}
+                                className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-cyan"
+                            >
+                                <span className="font-display text-base uppercase tracking-tight text-tx md:text-lg">
+                                    {item.q}
+                                </span>
+                                <span
+                                    aria-hidden
+                                    className="font-mono text-cyan transition-transform"
+                                    style={{transform: open ? 'rotate(45deg)' : 'rotate(0deg)'}}
                                 >
-                                    <span className="font-display text-base text-tx md:text-lg">{item.q}</span>
-                                    <span className="font-mono text-tx2" aria-hidden>{open ? '−' : '+'}</span>
-                                </button>
-                                {open && (
-                                    <div id={panelId} className="px-5 pb-5 text-sm text-tx2">
-                                        {item.a}
-                                    </div>
-                                )}
-                            </li>
-                        );
-                    })}
-                </ul>
-
-                <Bridge data={BRIDGES.toQuiz}/>
+                                    +
+                                </span>
+                            </button>
+                            {open && (
+                                <div className="pb-5 text-base text-tx2">{item.a}</div>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
         </section>
     );
