@@ -3,44 +3,72 @@ import {CONTENT} from '@/lib/quiz-data';
 import {buildTelegramLink} from '@/lib/telegram';
 import {TrackedLink} from '@/components/ui/TrackedLink';
 
+const profileGlow: Record<string, string> = {
+    '--color-green': 'var(--glow-green)',
+    '--color-pink': 'var(--glow-pink)',
+    '--color-orange': 'var(--glow-orange)',
+};
+
 export function QuizResult({
-                               profile,
-                               onRestart,
-                           }: {
+    profile,
+    onRestart,
+}: {
     profile: Profile;
     onRestart: () => void;
 }) {
     const tgHref = buildTelegramLink(profile.tgMessage);
-    return (
-        <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-tx2">{profile.badge}</p>
-            <h3 className="mt-2 font-display text-2xl text-tx md:text-3xl">{profile.title}</h3>
-            <p className="mt-4 text-base text-tx2">{profile.body}</p>
+    const glow = profileGlow[profile.colorVar] ?? 'var(--glow-cyan)';
 
-            <div className="mt-8 rounded-[--radius-lg] border border-[--line] bg-[--glass] p-6">
-                <h4 className="font-display text-lg text-tx">{profile.offerTitle}</h4>
-                <p className="mt-3 text-sm text-tx2">{profile.offerText}</p>
+    return (
+        <div className="flex flex-col gap-5">
+            <div className="flex items-center gap-3">
+                <span
+                    className="inline-block h-3 w-3 rounded-full"
+                    style={{
+                        backgroundColor: `var(${profile.colorVar})`,
+                        boxShadow: glow,
+                    }}
+                    aria-hidden
+                />
+                <span
+                    className="font-mono text-xs uppercase tracking-[0.18em]"
+                    style={{color: `var(${profile.colorVar})`}}
+                >
+                    {profile.badge}
+                </span>
             </div>
 
-            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <h3 className="font-display text-2xl uppercase tracking-tight text-tx md:text-3xl">
+                {profile.title}
+            </h3>
+            <p className="text-base text-tx2">{profile.body}</p>
+
+            <div className="mt-2 border-t border-[--line-soft] pt-5">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-tx3">
+                    {profile.offerTitle}
+                </p>
+                <p className="mt-2 text-base text-tx">{profile.offerText}</p>
+            </div>
+
+            <p className="text-xs text-tx3">{CONTENT.quiz.resultNote}</p>
+
+            <div className="mt-2 flex flex-col gap-3 sm:flex-row">
                 <TrackedLink
                     href={tgHref}
                     goal={`lead_click_${profile.key}` as const}
                     external
-                    className="rounded-full bg-cyan px-6 py-3 text-center text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90"
+                    className="btn btn-primary"
                 >
-                    Записаться на бесплатную встречу
+                    Записаться на бесплатную встречу →
                 </TrackedLink>
                 <button
                     type="button"
                     onClick={onRestart}
-                    className="rounded-full border border-[--line] bg-[--glass] px-6 py-3 text-center text-sm text-tx2 transition-colors hover:text-tx"
+                    className="btn btn-secondary"
                 >
                     {CONTENT.quiz.restart}
                 </button>
             </div>
-
-            <p className="mt-4 text-xs text-tx3">{CONTENT.quiz.resultNote}</p>
         </div>
     );
 }

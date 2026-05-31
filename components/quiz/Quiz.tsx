@@ -37,29 +37,29 @@ export function Quiz() {
     };
 
     return (
-        <section id="test" className="border-b border-[--line] bg-bg-primary px-4 py-20 md:py-28">
-            <div className="mx-auto max-w-2xl">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-tx2">
-                    {CONTENT.quiz.kicker}
-                </p>
-                <h2 className="mt-2 font-display text-2xl text-tx md:text-4xl">
+        <section
+            id="test"
+            className="mx-auto w-full max-w-3xl px-4 py-20 md:py-28"
+        >
+            <div className="flex flex-col gap-4">
+                <span className="kicker">◆ {CONTENT.quiz.kicker}</span>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
                     {CONTENT.quiz.h2}
                 </h2>
-                <p className="mt-4 text-base text-tx2">{CONTENT.quiz.sub}</p>
+                <p className="text-base text-tx2">{CONTENT.quiz.sub}</p>
+            </div>
 
-                <div className="mt-10 rounded-[--radius-xl] border border-[--line] bg-bg2 p-6 md:p-8">
-                    <ProgressBar step={state.step} total={TOTAL}/>
-
-                    <div className="mt-8">
-                        {!state.finished && state.step < TOTAL ? (
-                            <QuizQuestion
-                                question={QUESTIONS[state.step]}
-                                onAnswer={handleAnswer}
-                            />
-                        ) : state.result ? (
-                            <QuizResult profile={PROFILES[state.result]} onRestart={handleReset}/>
-                        ) : null}
-                    </div>
+            <div className="card mt-10">
+                <ProgressBar step={state.step} total={TOTAL}/>
+                <div className="mt-8">
+                    {!state.finished && state.step < TOTAL ? (
+                        <QuizQuestion
+                            question={QUESTIONS[state.step]}
+                            onAnswer={handleAnswer}
+                        />
+                    ) : state.result ? (
+                        <QuizResult profile={PROFILES[state.result]} onRestart={handleReset}/>
+                    ) : null}
                 </div>
             </div>
         </section>
