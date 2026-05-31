@@ -1,49 +1,62 @@
-import {CONTENT, BRIDGES} from '@/lib/quiz-data';
-import {GlassCard} from '@/components/ui/GlassCard';
-import {Bridge} from '@/components/ui/Bridge';
+import {CONTENT} from '@/lib/quiz-data';
 
 export function Transformation() {
+    const {kicker, h2, before, bridge, after, afterItems} = CONTENT.transformation;
     return (
-        <section id="bab" className="border-b border-[--line] bg-bg2 px-4 py-20 md:py-28">
-            <div className="mx-auto max-w-5xl">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-tx2">
-                    {CONTENT.transformation.kicker}
-                </p>
-                <h2 className="mt-2 font-display text-2xl text-tx md:text-4xl">
-                    {CONTENT.transformation.h2}
+        <section
+            id="bab"
+            className="mx-auto w-full max-w-5xl px-4 py-20 md:py-28"
+        >
+            <div className="flex flex-col gap-4">
+                <span className="kicker">◆ {kicker}</span>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
+                    {h2}
                 </h2>
+            </div>
 
-                <div className="mt-10 grid gap-4 md:grid-cols-2">
-                    <GlassCard>
-                        <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-tx3">сейчас</h3>
-                        <ul className="mt-4 space-y-2 text-tx2">
-                            {CONTENT.transformation.before.map((b) => (
-                                <li key={b} className="flex gap-2">
-                                    <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-tx3" aria-hidden/>
-                                    <span>{b}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </GlassCard>
-
-                    <GlassCard className="border-cyan/40 bg-cyan/[0.04]">
-                        <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan">{CONTENT.transformation.after}</h3>
-                        <ul className="mt-4 space-y-2 text-tx">
-                            {CONTENT.transformation.afterItems.map((a) => (
-                                <li key={a} className="flex gap-2">
-                                    <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden/>
-                                    <span>{a}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </GlassCard>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+                {/* BEFORE */}
+                <div className="card">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-tx3">
+                        Сейчас
+                    </p>
+                    <ul className="mt-5 flex flex-col">
+                        {before.map((line) => (
+                            <li
+                                key={line}
+                                className="hairline py-3 text-base text-tx2"
+                            >
+                                {line}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
-                <p className="mt-8 text-center font-mono text-xs uppercase tracking-[0.2em] text-tx2">
-                    {CONTENT.transformation.bridge}
-                </p>
+                {/* AFTER */}
+                <div
+                    className="card"
+                    style={{boxShadow: 'var(--edge-highlight), var(--lift), var(--glow-cyan)'}}
+                >
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan">
+                        {after}
+                    </p>
+                    <ul className="mt-5 flex flex-col">
+                        {afterItems.map((line) => (
+                            <li
+                                key={line}
+                                className="hairline py-3 text-base text-tx"
+                            >
+                                {line}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
 
-                <Bridge data={BRIDGES.toQuiz}/>
+            <div className="mt-8 text-center">
+                <span className="pill" style={{color: 'var(--color-cyan)'}}>
+                    → {bridge} →
+                </span>
             </div>
         </section>
     );
