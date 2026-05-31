@@ -1,6 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
 import { Problem } from '@/components/sections/Problem';
-import { Map } from '@/components/sections/Map';
+import {LocationMap} from '@/components/sections/LocationMap';
 import { Transformation } from '@/components/sections/Transformation';
 import { Quiz } from '@/components/quiz/Quiz';
 import { Objections } from '@/components/sections/Objections';
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <Problem />
-      <Map />
+      <LocationMap />
       <Transformation />
       <Quiz />
       <Objections />
