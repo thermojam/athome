@@ -2,7 +2,7 @@ import type {Metadata, Viewport} from 'next';
 import localFont from 'next/font/local';
 import {Nunito, JetBrains_Mono} from 'next/font/google';
 import {CONTENT} from '@/lib/quiz-data';
-import { YandexMetrika } from '@/components/analytics/YandexMetrika';
+import {YandexMetrika} from '@/components/analytics/YandexMetrika';
 import './globals.css';
 
 const gerhaus = localFont({
@@ -14,12 +14,14 @@ const gerhaus = localFont({
 
 const nunito = Nunito({
     subsets: ['latin', 'cyrillic'],
+    weight: ['400', '600', '700', '800'],
     variable: '--font-nunito',
     display: 'swap',
 });
 
 const jbm = JetBrains_Mono({
     subsets: ['latin'],
+    weight: ['400', '500'],
     variable: '--font-jbm',
     display: 'swap',
 });
@@ -45,11 +47,11 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html
             lang="ru"
-            className={`${gerhaus.variable} ${nunito.variable} ${jbm.variable} h-full antialiased`}
+            className={`${gerhaus.variable} ${nunito.variable} ${jbm.variable} antialiased`}
         >
-        <body className="min-h-full flex flex-col">
-          {children}
-          <YandexMetrika />
+        <body className="min-h-screen flex flex-col">
+        {children}
+        <YandexMetrika/>
         </body>
         </html>
     );
