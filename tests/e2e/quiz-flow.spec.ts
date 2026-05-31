@@ -24,3 +24,18 @@ test('Hero CTA → quiz → result → TG link', async ({ page }) => {
   const href = await tgLink.getAttribute('href');
   expect(href).toMatch(/^https:\/\/t\.me\/[^?]+\?text=.+%D0/); // содержит URL-encoded кириллицу
 });
+
+test('bridge от Quiz к BookingSlot — клик ведёт к #booking', async ({page}) => {
+    await page.goto('/#test');
+
+    // Скроллим в зону bridge toBooking (он между Quiz и BookingSlot)
+    const bridgeLink = page.locator('a[href="#booking"]').first();
+    await bridgeLink.scrollIntoViewIfNeeded();
+    await expect(bridgeLink).toBeVisible();
+
+    await bridgeLink.click();
+
+    // Проверяем что секция #booking видна в viewport
+    const booking = page.locator('#booking');
+    await expect(booking).toBeInViewport();
+});
