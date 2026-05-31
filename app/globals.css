@@ -1,57 +1,205 @@
 @import "tailwindcss";
 
-/* ── Tailwind theme tokens (SPEC §5) ── */
+/* ── @theme: токены, которые Tailwind v4 превращает в утилиты ── */
 @theme {
-  /* Цвет / свет */
-  --color-cyan: #2CE6FF;
+  --color-cyan:   #2CE6FF;
   --color-violet: #8B5CFF;
-  --color-pink: #FF4FD8;
-  --color-green: #36FF9D;
+  --color-pink:   #FF4FD8;
+  --color-green:  #36FF9D;
   --color-orange: #FF9F43;
-  --color-blue: #4D7DFF;
+  --color-blue:   #4D7DFF;
 
   --color-bg-primary: #0E1117;
-  --color-bg2: #151923;
-  --color-bg3: #1B2030;
+  --color-bg2:        #151923;
+  --color-bg3:        #1B2030;
 
-  --color-tx: #E8ECF4;
+  --color-tx:  #E8ECF4;
   --color-tx2: #9AA3B5;
   --color-tx3: #5E6678;
 
-  /* Типографика — алиасим переменные next/font на theme-токены */
+  /* Шрифтовые алиасы на next/font переменные */
   --font-display: var(--font-gerhaus);
-  --font-body: var(--font-nunito);
-  --font-mono: var(--font-jbm);
+  --font-body:    var(--font-nunito);
+  --font-mono:    var(--font-jbm);
 }
 
-/* ── Кастомные переменные вне @theme (radii, glass, line, blur) ── */
+/* ── Кастомные переменные вне @theme (не нужны как Tailwind utility) ── */
 :root {
   --radius-md: 22px;
   --radius-lg: 30px;
   --radius-xl: 42px;
-  --blur-md: 18px;
-  --glass: rgba(255, 255, 255, 0.04);
-  --line: rgba(255, 255, 255, 0.09);
+  --blur-md:   18px;
+
+  /* ПРОИЗВОДНЫЕ токены премиальности (рецепт §5.1 спеки) */
+  --glass-bg-solid: #141925;
+  --glass-bg: linear-gradient(180deg,
+                              rgba(255,255,255,0.05) 0%,
+                              rgba(255,255,255,0.02) 40%,
+                              rgba(255,255,255,0.012) 100%);
+  --line:      rgba(255,255,255,0.09);
+  --line-soft: rgba(255,255,255,0.055);
+
+  --edge-highlight: inset 0 1px 0 rgba(255,255,255,0.10);
+  --lift: 0 1px 2px rgba(0,0,0,0.4),
+          0 8px 24px rgba(0,0,0,0.35),
+          0 24px 60px rgba(0,0,0,0.30);
+
+  --glow-cyan:   0 0 14px 1px rgba(44,230,255,0.6);
+  --glow-violet: 0 0 14px 1px rgba(139,92,255,0.6);
+  --glow-pink:   0 0 14px 1px rgba(255,79,216,0.6);
+  --glow-green:  0 0 14px 1px rgba(54,255,157,0.6);
+  --glow-orange: 0 0 14px 1px rgba(255,159,67,0.6);
+
+  --bg-gradient:
+    radial-gradient(120% 80% at 50% -10%, rgba(139,92,255,0.16) 0%, rgba(139,92,255,0) 45%),
+    radial-gradient(90% 60% at 80% 0%,   rgba(44,230,255,0.09) 0%, rgba(44,230,255,0) 50%),
+    linear-gradient(180deg, #121624 0%, #0E1117 40%, #0A0D13 100%);
 }
 
-/* ── Глобальный body ── */
+/* ── ПРИЁМ 1: фон body — градиентная атмосфера, fixed чтобы не плыл при скролле ── */
 html {
   background: var(--color-bg-primary);
   color: var(--color-tx);
 }
 body {
-  background: var(--color-bg-primary);
+  background-color: var(--color-bg-primary);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
   color: var(--color-tx);
   font-family: var(--font-body), 'Nunito', 'Segoe UI', sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-/* ── Reduced motion: глобально отключаем transition/animation ── */
+/* ── @layer components: премиум строительные блоки ── */
+@layer components {
+  /* ПРИЁМ 2: стеклянная карточка */
+  .card {
+    position: relative;
+    background-color: var(--glass-bg-solid);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--edge-highlight), var(--lift);
+    backdrop-filter: blur(var(--blur-md));
+    padding: 34px 36px;
+  }
+  .card-lg { border-radius: var(--radius-xl); padding: 40px 44px; }
+  .card-md { border-radius: var(--radius-lg); padding: 26px 28px; }
+  .card-sm { border-radius: var(--radius-md); padding: 18px 20px; }
+
+  /* ПРИЁМ 3: hairline-разделитель внутри карточки */
+  .hairline { border-bottom: 1px solid var(--line-soft); }
+  .hairline:last-child { border-bottom: none; }
+
+  /* ПРИЁМ 5: кнопки */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-body), 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: transform .15s ease, box-shadow .25s ease, opacity .15s ease;
+  }
+  .btn-primary {
+    background: linear-gradient(100deg, var(--color-cyan), #20B8E8);
+    color: #06121b;
+    box-shadow: 0 0 0 1px rgba(44,230,255,0.5),
+                0 8px 30px rgba(44,230,255,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(44,230,255,0.7),
+                0 12px 44px rgba(44,230,255,0.5);
+  }
+  .btn-slot {
+    background: linear-gradient(100deg, var(--color-violet), var(--color-blue) 50%, var(--color-cyan));
+    color: #06121b;
+    box-shadow: 0 0 0 1px rgba(139,92,255,0.4),
+                0 12px 36px rgba(139,92,255,0.45);
+  }
+  .btn-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(139,92,255,0.6),
+                0 16px 48px rgba(139,92,255,0.55);
+  }
+  .btn-slot:disabled,
+  .btn-slot[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background-color: rgba(255,255,255,0.02);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--line);
+    color: var(--color-tx);
+    box-shadow: var(--edge-highlight);
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.22); }
+
+  /* пилюли (hero/booking/list-теги) */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono), 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-tx2);
+    padding: 9px 16px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--line);
+    box-shadow: var(--edge-highlight);
+  }
+
+  /* типографические голоса */
+  .kicker {
+    font-family: var(--font-mono), 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--color-cyan);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* ── @keyframes (вне @layer — keyframes должны быть в top-level) ── */
+@keyframes radar-pulse {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+.radar-ring {
+  transform-origin: center;
+  animation: radar-pulse 3.2s ease-out infinite;
+}
+.radar-ring--d1 { animation-delay: 0s; }
+.radar-ring--d2 { animation-delay: 1s; }
+.radar-ring--d3 { animation-delay: 2s; }
+
+/* ── Reduced motion: глушим радар, transition, reveal ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .radar-ring {
+    animation: none !important;
+    opacity: 0.4;
   }
 }
