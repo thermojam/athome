@@ -86,9 +86,36 @@ body {
     backdrop-filter: blur(var(--blur-md));
     padding: 34px 36px;
   }
-  .card-lg { padding: 40px 44px; }
-  .card-md { border-radius: var(--radius-lg); padding: 26px 28px; }
-  .card-sm { border-radius: var(--radius-md); padding: 18px 20px; }
+  .card-lg {
+    position: relative;
+    background-color: var(--glass-bg-solid);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--edge-highlight), var(--lift);
+    backdrop-filter: blur(var(--blur-md));
+    padding: 40px 44px;
+  }
+  .card-md {
+    position: relative;
+    background-color: var(--glass-bg-solid);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--edge-highlight), var(--lift);
+    backdrop-filter: blur(var(--blur-md));
+    padding: 26px 28px;
+  }
+  .card-sm {
+    position: relative;
+    background-color: var(--glass-bg-solid);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--edge-highlight), var(--lift);
+    backdrop-filter: blur(var(--blur-md));
+    padding: 18px 20px;
+  }
 
   /* ПРИЁМ 3: hairline-разделитель внутри карточки */
   .hairline { border-bottom: 1px solid var(--line-soft); }
