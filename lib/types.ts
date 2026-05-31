@@ -3,18 +3,18 @@ export type ProfileKey = 'health' | 'body' | 'energy';
 export interface Profile {
     key: ProfileKey;
     badge: string;
-    colorVar: string;      // CSS/Tailwind токен, напр. '--color-green'
+    colorVar: string;
     title: string;
     body: string;
     offerTitle: string;
     offerText: string;
-    tgMessage: string;     // предзаполненный текст для Telegram deep link
+    tgMessage: string;
 }
 
 export interface QuizOption {
     label: string;
     sub: string;
-    scores: ProfileKey;    // какой профиль получает +1
+    scores: ProfileKey;
 }
 
 export interface QuizQuestion {
@@ -26,53 +26,103 @@ export interface QuizQuestion {
 export interface BridgeContent {
     question: string;
     cta: string;
-    href: string;          // якорь, напр. '#map'
+    href: string;
+}
+
+// ── НОВОЕ: точка ЖК на карте (SPEC §8) ──
+export interface MapPoint {
+    name: string;
+    walkMinutes: number;
+    /** CSS-переменная цвета акцента — определяет цвет dot/pin/glow */
+    accentVar: '--color-cyan' | '--color-violet' | '--color-green' | '--color-pink';
+    /** Координаты пина в % от viewbox SVG (0..100) */
+    x: number;
+    y: number;
+}
+
+// ── НОВОЕ: слот записи (SPEC §9) ──
+// status — только 'free': busy не возим в DOM на MVP, чтобы не врать пользователю.
+export interface Slot {
+    id: string;
+    day: string;
+    time: string;
+    label: string;
+    status: 'free';
+    profileHint?: ProfileKey;
+    walkMinutes?: number;
 }
 
 export interface SiteContent {
     meta: {
-        title: string; description: string;
-        ogTitle: string; ogDescription: string;
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
     };
     hero: {
-        kicker: string; h1: string; sub: string;
-        pills: string[]; cta: string; microcopy: string;
+        kicker: string;
+        h1: string;
+        sub: string;
+        pills: string[];
+        cta: string;
+        microcopy: string;
     };
     problem: {
-        kicker: string; h2: string;
+        kicker: string;
+        h2: string;
         cards: { emoji: string; title: string; text: string }[];
-        summaryLead: string; summaryRest: string;
+        summaryLead: string;
+        summaryRest: string;
     };
+    // ── МИГРАЦИЯ: новая структура для LocationMap ──
     map: {
-        kicker: string; h2: string; sub: string;
-        center: string;
-        points: { name: string; time: string }[];
-        caption: string;
+        kicker: string;
+        h2: string;
+        body: string;
+        gymLabel: string;
+        points: MapPoint[];
     };
     transformation: {
-        kicker: string; h2: string;
-        before: string[]; bridge: string; after: string;  // after = заголовок колонки
+        kicker: string;
+        h2: string;
+        before: string[];
+        bridge: string;
+        after: string;
         afterItems: string[];
     };
     quiz: {
-        kicker: string; h2: string; sub: string;
-        resultNote: string; restart: string;
+        kicker: string;
+        h2: string;
+        sub: string;
+        resultNote: string;
+        restart: string;
+    };
+    // ── НОВОЕ: контент BookingSlot ──
+    booking: {
+        kicker: string;
+        h2: string;
+        body: string;
+        pillGym: string;
+        ctaLabel: string;
+        honestyNote: string;
     };
     objections: {
-        kicker: string; h2: string;
+        kicker: string;
+        h2: string;
         items: { q: string; a: string }[];
     };
     finalCta: {
-        kicker: string; h2: string; text: string;
-        cta1: string; cta2: string; guarantee: string;
+        kicker: string;
+        h2: string;
+        text: string;
+        cta1: string;
+        cta2: string;
+        guarantee: string;
     };
     footer: { name: string; tagline: string };
     stickyCta: string;
 }
 
-// ── Состояние квиза (SPEC §4) ──
-// step — number (а не union 0..3): reducer добавляет +1 и TS не справляется с narrow'ом;
-// диапазон 0..3 гарантируется логикой reducer'а и тестами.
 export interface QuizState {
     step: number;
     scores: Record<ProfileKey, number>;
@@ -80,18 +130,21 @@ export interface QuizState {
     result: ProfileKey | null;
 }
 
-// ── Аналитика: типобезопасные цели (SPEC §4, §9.3) ──
+// ── Аналитика: добавлены slot_select / slot_take ──
 export type Goal =
     | 'quiz_start'
     | 'quiz_complete'
     | `lead_click_${ProfileKey}`
     | 'lead_click_direct'
+    | 'slot_select'
+    | 'slot_take'
     | 'objection_open';
 
 // ── Фаза 2: payload заявки (не используется в MVP) ──
 export interface LeadPayload {
     name: string;
     contact: string;
-    profile: ProfileKey;
-    source: 'quiz' | 'direct';
+    profile?: ProfileKey;
+    slotId?: string;
+    source: 'quiz' | 'direct' | 'slot';
 }
