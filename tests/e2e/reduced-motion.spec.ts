@@ -10,7 +10,7 @@ test('reduced-motion: all sections visible without animation block', async ({ pa
 
   // Карточки Problem видны без скролла-обёртки Reveal
   await page.locator('#pain').scrollIntoViewIfNeeded();
-  const cards = page.locator('#pain li');
+  const cards = page.locator('#pain .card-md');
   await expect(cards).toHaveCount(3);
   for (let i = 0; i < 3; i++) {
     await expect(cards.nth(i)).toBeVisible();
@@ -19,4 +19,19 @@ test('reduced-motion: all sections visible without animation block', async ({ pa
   // Квиз доступен (первый вопрос виден)
   await page.locator('#test').scrollIntoViewIfNeeded();
   await expect(page.locator('#test')).toContainText('Что для тебя сейчас важнее всего?');
+});
+
+test('радар в LocationMap имеет CSS animation: none при reduced-motion', async ({browser}) => {
+    const context = await browser.newContext({reducedMotion: 'reduce'});
+    const page = await context.newPage();
+    await page.goto('/');
+
+    const ring = page.locator('#map .radar-ring').first();
+    await ring.scrollIntoViewIfNeeded();
+
+    const animation = await ring.evaluate((el) => getComputedStyle(el).animationName);
+    // При reduced-motion CSS-правило перекрывает animation на none
+    expect(animation === 'none' || animation === '').toBeTruthy();
+
+    await context.close();
 });
