@@ -1,12 +1,20 @@
-import {Bone, Repeat, BatteryLow, type LucideIcon} from 'lucide-react';
+import {Activity, TrendingDown, BatteryLow, type LucideIcon} from 'lucide-react';
 import {CONTENT} from '@/lib/quiz-data';
 import type {ProblemIcon} from '@/lib/types';
 
-const ICON_MAP: Record<ProblemIcon, LucideIcon> = {
-    bone: Bone,
-    repeat: Repeat,
+const ICON_MAP: Record<'activity' | 'trending-down' | 'battery-low', LucideIcon> = {
+    'activity': Activity,
+    'trending-down': TrendingDown,
     'battery-low': BatteryLow,
 };
+
+function resolveIconKey(c: { iconKey?: ProblemIcon; icon?: ProblemIcon }): 'activity' | 'trending-down' | 'battery-low' {
+    const k = (c.iconKey ?? c.icon ?? 'activity');
+    if (k === 'activity' || k === 'trending-down' || k === 'battery-low') return k;
+    if (k === 'bone') return 'activity';
+    if (k === 'repeat') return 'trending-down';
+    return 'activity';
+}
 
 export function Problem() {
     const {kicker, h2, cards, summaryLead, summaryRest} = CONTENT.problem;
@@ -22,12 +30,14 @@ export function Problem() {
                 </h2>
             </div>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <div data-testid="pain-row" className="mt-10 grid gap-5 md:grid-cols-3">
                 {cards.map((c) => {
-                    const Icon = ICON_MAP[c.icon];
+                    const key = resolveIconKey(c);
+                    const Icon = ICON_MAP[key];
                     return (
-                        <div key={c.title} className="card-md flex flex-col gap-4">
+                        <div key={c.title} data-testid="pain-card" className="card-md flex flex-col gap-4">
                             <span
+                                data-icon={key}
                                 className="inline-flex h-11 w-11 items-center justify-center rounded-2xl"
                                 style={{
                                     border: '1px solid rgba(44,230,255,0.35)',
