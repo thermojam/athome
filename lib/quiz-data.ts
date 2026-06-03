@@ -115,7 +115,7 @@ export const CONTENT: SiteContent = {
         cta2: '✈ Сразу написать',
         microcopy: 'Отвечаю лично, обычно в течение пары часов.',
         badge: '◆ зал у дома · спб',
-        photo: {src: '/about-photo.jpg', alt: 'Каменский Никита — тренер'},
+        photo: {src: '/about-photo.webp', alt: 'Каменский Никита — тренер'},
     },
     problem: {
         kicker: 'почему не держится',

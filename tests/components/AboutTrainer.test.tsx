@@ -56,9 +56,12 @@ describe('AboutTrainer (SPEC §8.6)', () => {
         expect(screen.getByText(CONTENT.about.microcopy)).toBeInTheDocument();
     });
 
-    it('фото-блок рендерится (placeholder если файла нет)', () => {
+    it('фото-блок рендерится с <img> (alt из CONTENT, src из public/)', () => {
         const {container} = render(<AboutTrainer/>);
         const photo = container.querySelector('.about-photo');
         expect(photo).not.toBeNull();
+        const img = photo?.querySelector('img');
+        expect(img).not.toBeNull();
+        expect(img?.getAttribute('alt')).toBe(CONTENT.about.photo.alt);
     });
 });

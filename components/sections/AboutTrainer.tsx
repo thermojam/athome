@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {CONTENT, DIRECT_TG_MESSAGE} from '@/lib/quiz-data';
 import {buildTelegramLink} from '@/lib/telegram';
 import {TrackedLink} from '@/components/ui/TrackedLink';
@@ -5,19 +6,23 @@ import {TrackedLink} from '@/components/ui/TrackedLink';
 /**
  * AboutTrainer (SPEC v3.3 §8.6) — знакомство наверху страницы.
  * Зона рассказа: без .card на секции; рамка только у фото.
- *
- * Фото-фоллбэк: пока в public/about-photo.jpg нет реального фото,
- * рендерим градиент-плейсхолдер. Переключение на <Image> — отдельный мелкий PR
- * после получения снимка от заказчика.
  */
 export function AboutTrainer() {
-    const {kicker, h2, intro, facts, freeMeetingNote, cta1, cta2, microcopy, badge} = CONTENT.about;
+    const {kicker, h2, intro, facts, freeMeetingNote, cta1, cta2, microcopy, badge, photo} = CONTENT.about;
     const tgHref = buildTelegramLink(DIRECT_TG_MESSAGE);
 
     return (
         <section id="about" className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28">
             <div className="about">
-                <div className="about-photo about-photo-placeholder">
+                <div className="about-photo">
+                    <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 820px) 100vw, 40vw"
+                        priority
+                        style={{objectFit: 'cover', objectPosition: '50% 6%'}}
+                    />
                     <span className="badge">{badge}</span>
                 </div>
                 <div>
