@@ -25,17 +25,21 @@ test('Hero CTA → quiz → result → TG link', async ({ page }) => {
   expect(href).toMatch(/^https:\/\/t\.me\/[^?]+\?text=.+%D0/); // содержит URL-encoded кириллицу
 });
 
-test('bridge от Quiz к BookingSlot — клик ведёт к #booking', async ({page}) => {
+test('после Quiz первый bridge ведёт к #objections (v3.3 swap)', async ({page}) => {
     await page.goto('/#test');
+    // Берём первую ссылку bridge, идущую СРАЗУ после #test (Reveal-обёртки → используем XPath по document-order)
+    const firstBridgeAfterQuiz = page
+        .locator('xpath=//section[@id="test"]/following::a[starts-with(@href, "#")][1]');
+    await firstBridgeAfterQuiz.scrollIntoViewIfNeeded();
+    const href = await firstBridgeAfterQuiz.getAttribute('href');
+    expect(href).toBe('#objections');
+});
 
-    // Скроллим в зону bridge toBooking (он между Quiz и BookingSlot)
+test('bridge после Objections ведёт к #booking', async ({page}) => {
+    await page.goto('/#objections');
     const bridgeLink = page.locator('a[href="#booking"]').first();
     await bridgeLink.scrollIntoViewIfNeeded();
     await expect(bridgeLink).toBeVisible();
-
     await bridgeLink.click();
-
-    // Проверяем что секция #booking видна в viewport
-    const booking = page.locator('#booking');
-    await expect(booking).toBeInViewport();
+    await expect(page.locator('#booking')).toBeInViewport();
 });
