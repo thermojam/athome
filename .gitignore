@@ -17,8 +17,6 @@
 .idea
 .DS_Store
 *.pem
-landing-final.html
-VISUAL-REFERENCE.html
 
 # debug
 npm-debug.log*
