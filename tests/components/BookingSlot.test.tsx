@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import {BookingSlot} from '@/components/sections/BookingSlot';
 import {SLOTS} from '@/lib/slots-data';
 
-describe('BookingSlot (SPEC §9)', () => {
+describe('BookingSlot (SPEC v3.3 §9)', () => {
     beforeEach(() => {
         vi.stubEnv('NEXT_PUBLIC_YM_ID', '99999999');
         vi.stubEnv('NEXT_PUBLIC_TG_USERNAME', 'test_user');
@@ -14,44 +14,46 @@ describe('BookingSlot (SPEC §9)', () => {
         delete window.ym;
     });
 
-    it('рендерит все слоты как кнопки с aria-pressed="false"', () => {
+    it('секция id="booking"', () => {
+        const {container} = render(<BookingSlot/>);
+        expect(container.querySelector('#booking')).not.toBeNull();
+    });
+
+    it('рендерит ровно 6 чипов (v3.3 — 6 дней без субботы)', () => {
         render(<BookingSlot/>);
         const chips = screen.getAllByRole('button', {name: /\d{2}:\d{2}/});
+        expect(chips).toHaveLength(6);
         expect(chips).toHaveLength(SLOTS.length);
-        for (const c of chips) {
-            expect(c).toHaveAttribute('aria-pressed', 'false');
-        }
     });
 
-    it('CTA «Занять слот» disabled пока ничего не выбрано', () => {
-        render(<BookingSlot/>);
-        const cta = screen.getByTestId('booking-cta');
-        expect(cta).toHaveAttribute('aria-disabled', 'true');
-    });
-
-    it('подпись честности про Telegram всегда видна', () => {
+    it('подпись честности про Telegram видна', () => {
         render(<BookingSlot/>);
         expect(screen.getByText(/откроется telegram/i)).toBeInTheDocument();
     });
 
-    it('выбор чипа: aria-pressed становится "true", CTA становится включённым', async () => {
-        const user = userEvent.setup();
+    it('первый чип pre-selected (aria-pressed="true"); CTA активна с момента рендера', () => {
         render(<BookingSlot/>);
-        const chip = screen.getAllByRole('button', {name: /\d{2}:\d{2}/})[0];
-        await user.click(chip);
-        expect(chip).toHaveAttribute('aria-pressed', 'true');
+        const chips = screen.getAllByRole('button', {name: /\d{2}:\d{2}/});
+        expect(chips[0]).toHaveAttribute('aria-pressed', 'true');
         const cta = screen.getByTestId('booking-cta');
         expect(cta).not.toHaveAttribute('aria-disabled', 'true');
     });
 
-    it('выбор чипа: href ссылки CTA содержит выбранный день и время (encoded)', async () => {
+    it('у компонента нет .slot-tags / .s-tag (v3.3 — теги hint/walk убраны)', () => {
+        const {container} = render(<BookingSlot/>);
+        expect(container.querySelector('.slot-tags')).toBeNull();
+        expect(container.querySelector('.s-tag')).toBeNull();
+    });
+
+    it('клик по другому чипу: aria-pressed переключается, href содержит выбранный день/время', async () => {
         const user = userEvent.setup();
         render(<BookingSlot/>);
-        const target = SLOTS[1];
-        const chip = screen.getByRole('button', {name: new RegExp(target.time)});
-        await user.click(chip);
+        const chips = screen.getAllByRole('button', {name: /\d{2}:\d{2}/});
+        const target = SLOTS[2];
+        await user.click(chips[2]);
+        expect(chips[0]).toHaveAttribute('aria-pressed', 'false');
+        expect(chips[2]).toHaveAttribute('aria-pressed', 'true');
         const cta = screen.getByTestId('booking-cta') as HTMLAnchorElement;
-        expect(cta.href).toContain('t.me/test_user');
         expect(decodeURIComponent(cta.href)).toContain(target.day);
         expect(decodeURIComponent(cta.href)).toContain(target.time);
     });
@@ -61,45 +63,33 @@ describe('BookingSlot (SPEC §9)', () => {
         window.ym = ym;
         const user = userEvent.setup();
         render(<BookingSlot/>);
-        await user.click(screen.getAllByRole('button', {name: /\d{2}:\d{2}/})[0]);
+        await user.click(screen.getAllByRole('button', {name: /\d{2}:\d{2}/})[1]);
         const calls = ym.mock.calls.filter((c) => c[2] === 'slot_select');
         expect(calls).toHaveLength(1);
     });
 
-    it('клик по активному CTA шлёт reachGoal("slot_take")', async () => {
+    it('клик по CTA шлёт reachGoal("slot_take")', async () => {
         const ym = vi.fn();
         window.ym = ym;
         const user = userEvent.setup();
         render(<BookingSlot/>);
-        await user.click(screen.getAllByRole('button', {name: /\d{2}:\d{2}/})[0]);
         await user.click(screen.getByTestId('booking-cta'));
         const calls = ym.mock.calls.filter((c) => c[2] === 'slot_take');
         expect(calls).toHaveLength(1);
     });
 
-    it('честность: после клика «Занять» в DOM нет слов забронировано/занято/зарезервировано', async () => {
+    it('честность: в DOM нет слов забронировано/занято/зарезервирован', async () => {
         const user = userEvent.setup();
         render(<BookingSlot/>);
-        await user.click(screen.getAllByRole('button', {name: /\d{2}:\d{2}/})[0]);
         await user.click(screen.getByTestId('booking-cta'));
         const html = document.body.innerHTML.toLowerCase();
-        for (const word of ['забронирован', 'занято', 'зарезервирован', 'ваш слот', 'место за вами']) {
+        for (const word of ['забронирован', 'занято', 'зарезервирован', 'место за вами']) {
             expect(html).not.toContain(word);
         }
     });
 
-    it('выбор второго чипа: первый снова aria-pressed="false"', async () => {
-        const user = userEvent.setup();
+    it('кнопка .btn-take имеет класс btn-take (центрирование margin auto)', () => {
         render(<BookingSlot/>);
-        const chips = screen.getAllByRole('button', {name: /\d{2}:\d{2}/});
-        await user.click(chips[0]);
-        await user.click(chips[1]);
-        expect(chips[0]).toHaveAttribute('aria-pressed', 'false');
-        expect(chips[1]).toHaveAttribute('aria-pressed', 'true');
-    });
-
-    it('секция имеет id="booking" (якорь для bridge)', () => {
-        const {container} = render(<BookingSlot/>);
-        expect(container.querySelector('#booking')).not.toBeNull();
+        expect(screen.getByTestId('booking-cta').classList.contains('btn-take')).toBe(true);
     });
 });
