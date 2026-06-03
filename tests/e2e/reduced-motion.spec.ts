@@ -26,7 +26,7 @@ test('радар в LocationMap имеет CSS animation: none при reduced-mo
     const page = await context.newPage();
     await page.goto('/');
 
-    const ring = page.locator('#map .radar-ring').first();
+    const ring = page.locator('#map .radar-soft').first();
     await ring.scrollIntoViewIfNeeded();
 
     const animation = await ring.evaluate((el) => getComputedStyle(el).animationName);
