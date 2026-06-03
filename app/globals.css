@@ -425,7 +425,7 @@ body {
   .hero { padding: 64px 0 24px; }
   .card { padding: 22px 18px; }
   .slot-grid { grid-template-columns: repeat(2, 1fr); }
-  .map-box { aspect-ratio: 1/1; }
+  .loc-full .map-box { aspect-ratio: 1/1; }
   .tr-node { width: 60px; height: 60px; }
   .btn-take { width: 100%; }
   .hero .cta-row,
