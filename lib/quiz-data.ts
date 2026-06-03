@@ -138,11 +138,14 @@ export const CONTENT: SiteContent = {
         // Реальные минуты пешком до Приморский пр., 56 (АЗС «Роснефть» / стадион «Приморец»):
         // Life-Приморский (52-54) ≈2-3, Стокгольм (46) ≈4-5, Три ветра (62) ≈5-7,
         // Золотая Гавань (Яхтенная 1/1, за Яхтенным мостом и ЗСД) ≈15-18.
+        // Порядок и цвета пинов сохраняются от исходного дизайна (orange=Гавань,
+        // cyan=Ветра, violet=Life, green=Стокгольм) — карта строится по геометрии,
+        // не по близости.
         points: [
-            {name: 'Life-Приморский', walkMinutes: 3,  accentVar: '--color-orange', x: 14, y: 24},
-            {name: 'Стокгольм',       walkMinutes: 5,  accentVar: '--color-cyan',   x: 24, y: 62},
-            {name: 'Три ветра',       walkMinutes: 6,  accentVar: '--color-violet', x: 74, y: 60},
-            {name: 'Золотая Гавань',  walkMinutes: 17, accentVar: '--color-green',  x: 84, y: 22},
+            {name: 'Золотая Гавань',  walkMinutes: 17, accentVar: '--color-orange', x: 14, y: 24},
+            {name: 'Три ветра',       walkMinutes: 6,  accentVar: '--color-cyan',   x: 24, y: 62},
+            {name: 'Life-Приморский', walkMinutes: 3,  accentVar: '--color-violet', x: 74, y: 60},
+            {name: 'Стокгольм',       walkMinutes: 5,  accentVar: '--color-green',  x: 84, y: 22},
         ],
     },
     transformation: {

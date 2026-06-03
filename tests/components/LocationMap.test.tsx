@@ -11,12 +11,12 @@ describe('LocationMap (SPEC v3.3 §8)', () => {
         expect(section?.classList.contains('card')).toBe(false);
     });
 
-    it('4 строки .zk в .zk-list в порядке Life-Приморский → Стокгольм → Три ветра → Золотая Гавань (по близости)', () => {
+    it('4 строки .zk в .zk-list в исходном порядке Золотая Гавань → Три ветра → Life-Приморский → Стокгольм', () => {
         const {container} = render(<LocationMap/>);
         const items = container.querySelectorAll('.zk');
         expect(items).toHaveLength(4);
         const names = Array.from(items).map((el) => el.querySelector('.name')?.textContent?.trim());
-        expect(names).toEqual(['Life-Приморский', 'Стокгольм', 'Три ветра', 'Золотая Гавань']);
+        expect(names).toEqual(['Золотая Гавань', 'Три ветра', 'Life-Приморский', 'Стокгольм']);
     });
 
     it('4 пина в .map-box', () => {

@@ -1,9 +1,9 @@
 import {test, expect} from '@playwright/test';
 
-test('4 ЖК в порядке Life-Приморский → Стокгольм → Три ветра → Золотая Гавань (по близости)', async ({page}) => {
+test('4 ЖК в исходном порядке Золотая Гавань → Три ветра → Life-Приморский → Стокгольм', async ({page}) => {
     await page.goto('/');
     const names = await page.locator('#map .zk .name').allTextContents();
-    expect(names.map((s) => s.trim())).toEqual(['Life-Приморский', 'Стокгольм', 'Три ветра', 'Золотая Гавань']);
+    expect(names.map((s) => s.trim())).toEqual(['Золотая Гавань', 'Три ветра', 'Life-Приморский', 'Стокгольм']);
 });
 
 test('4 пина в .map-box', async ({page}) => {
