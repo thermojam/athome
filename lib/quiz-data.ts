@@ -135,12 +135,14 @@ export const CONTENT: SiteContent = {
             'Все, кто ходит ко мне годами, говорят одно: занимаются только потому, что зал рядом. Через полгорода — не поехал бы никто.',
         gymLabel: 'ЗАЛ · ПРИМОРСКИЙ 56',
         caption: 'после тренировки ты дома через несколько минут, а не в пробке',
-        // ⚠️ названия и минуты ЖК — сверить по Яндекс.Картам перед продом.
+        // Реальные минуты пешком до Приморский пр., 56 (АЗС «Роснефть» / стадион «Приморец»):
+        // Life-Приморский (52-54) ≈2-3, Стокгольм (46) ≈4-5, Три ветра (62) ≈5-7,
+        // Золотая Гавань (Яхтенная 1/1, за Яхтенным мостом и ЗСД) ≈15-18.
         points: [
-            {name: 'Золотая Гавань',  walkMinutes: 4,  accentVar: '--color-orange', x: 14, y: 24},
-            {name: 'Три ветра',       walkMinutes: 6,  accentVar: '--color-cyan',   x: 24, y: 62},
-            {name: 'Приморский life', walkMinutes: 8,  accentVar: '--color-violet', x: 74, y: 60},
-            {name: 'Стокгольм',       walkMinutes: 11, accentVar: '--color-green',  x: 84, y: 22},
+            {name: 'Life-Приморский', walkMinutes: 3,  accentVar: '--color-orange', x: 14, y: 24},
+            {name: 'Стокгольм',       walkMinutes: 5,  accentVar: '--color-cyan',   x: 24, y: 62},
+            {name: 'Три ветра',       walkMinutes: 6,  accentVar: '--color-violet', x: 74, y: 60},
+            {name: 'Золотая Гавань',  walkMinutes: 17, accentVar: '--color-green',  x: 84, y: 22},
         ],
     },
     transformation: {
