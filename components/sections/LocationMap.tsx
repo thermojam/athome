@@ -1,187 +1,97 @@
 import {CONTENT} from '@/lib/quiz-data';
-import type {MapPoint} from '@/lib/types';
 
 /**
- * Премиум-карта района (SPEC §8). Server Component.
- * 3 колонки на десктопе, стек на мобиле.
- * Центр — стеклянная квадратная карта с SVG-подложкой и CSS-радаром.
+ * LocationMap (SPEC v3.3 §8) — карта локации, ПУТЬ A: без .card на секции.
+ * Серверный компонент: SVG + пульсирующий радар CSS-анимацией.
  */
 export function LocationMap() {
-    const {kicker, h2, body, gymLabel, points} = CONTENT.map;
+    const {kicker, h2, body, gymLabel, caption, points} = CONTENT.map;
 
     return (
-        <section
-            id="map"
-            className="relative mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28"
-        >
-            <div className="grid gap-10 md:grid-cols-[1fr_minmax(360px,460px)_1fr] md:items-center md:gap-12">
-                {/* ── Левая колонка ── */}
-                <div className="flex flex-col gap-4">
-                    <span className="kicker">◆ {kicker}</span>
-                    <h2 className="font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">
-                        {h2}
-                    </h2>
-                    <p className="max-w-md text-base text-tx2">{body}</p>
+        <section id="map" className="mx-auto w-full max-w-[var(--container)] px-4 py-20 md:py-28">
+            <div className="loc loc-full">
+                <div className="loc-intro">
+                    <span className="kicker">{kicker}</span>
+                    <h2 className="mt-3 font-display text-3xl uppercase tracking-tight text-tx md:text-4xl">{h2}</h2>
+                    <p className="mt-4 text-base text-tx2">{body}</p>
                 </div>
 
-                {/* ── Центр: квадратная карта ── */}
-                <div className="card aspect-square w-full p-4 md:p-6">
-                    <MapSvg points={points} gymLabel={gymLabel}/>
+                <div className="map-box">
+                    <svg viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="gymgrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stopColor="#8B5CFF"/>
+                                <stop offset="1" stopColor="#2CE6FF"/>
+                            </linearGradient>
+                        </defs>
+                        {/* сетка улиц */}
+                        <line className="map-gl" x1="0" y1="36" x2="320" y2="36"/>
+                        <line className="map-gl major" x1="0" y1="74" x2="320" y2="74"/>
+                        <line className="map-gl" x1="0" y1="112" x2="320" y2="112"/>
+                        <line className="map-gl major" x1="0" y1="150" x2="320" y2="150"/>
+                        <line className="map-gl" x1="0" y1="188" x2="320" y2="188"/>
+                        <line className="map-gl" x1="48" y1="0" x2="48" y2="220"/>
+                        <line className="map-gl major" x1="104" y1="0" x2="104" y2="220"/>
+                        <line className="map-gl" x1="160" y1="0" x2="160" y2="220"/>
+                        <line className="map-gl major" x1="216" y1="0" x2="216" y2="220"/>
+                        <line className="map-gl" x1="272" y1="0" x2="272" y2="220"/>
+                        {/* диагональ-проспект */}
+                        <line className="map-gl major" x1="0" y1="210" x2="320" y2="20"/>
+                        {/* залив снизу */}
+                        <path d="M0 165 Q80 155 160 165 Q240 175 320 162 L320 220 L0 220 Z" fill="rgba(40,90,140,0.18)"/>
+                        <path d="M0 165 Q80 155 160 165 Q240 175 320 162" fill="none" stroke="rgba(44,230,255,0.4)" strokeWidth="1.5"/>
+                        {/* радар */}
+                        <g className="radar-soft">
+                            <circle className="radar-static r3" cx="160" cy="92" r="62"/>
+                            <circle className="radar-static r2" cx="160" cy="92" r="42"/>
+                        </g>
+                        {/* центр-зал */}
+                        <circle cx="160" cy="92" r="22" fill="url(#gymgrad)" stroke="rgba(44,230,255,0.7)" strokeWidth="1.5" style={{filter: 'drop-shadow(0 0 16px rgba(44,230,255,0.6))'}}/>
+                        <text x="160" y="93" textAnchor="middle" dominantBaseline="central" fontFamily="Georgia,serif" fontWeight="700" fontSize="16" fill="#0a0f1a">НК</text>
+                    </svg>
+                    {/* пины */}
+                    {points.map((p, i) => {
+                        const fill =
+                            p.accentVar === '--color-orange' ? '#FF9F43'
+                            : p.accentVar === '--color-cyan' ? '#2CE6FF'
+                            : p.accentVar === '--color-violet' ? '#8B5CFF'
+                            : p.accentVar === '--color-green' ? '#36FF9D'
+                            : '#FF4FD8';
+                        return (
+                            <div
+                                key={p.name}
+                                className={`pin pin-${i + 1}`}
+                                style={{top: `${p.y}%`, left: `${p.x}%`}}
+                            >
+                                <svg viewBox="0 0 24 31" aria-hidden="true">
+                                    <path d="M12 0C5.4 0 0 5 0 11.3 0 20 12 31 12 31s12-11 12-19.7C24 5 18.6 0 12 0z" fill={fill}/>
+                                    <circle cx="12" cy="11" r="4.4" fill="#0a0f1a"/>
+                                </svg>
+                            </div>
+                        );
+                    })}
+                    <div className="gym-core">
+                        <div className="gym-cap">{gymLabel}</div>
+                    </div>
                 </div>
 
-                {/* ── Правая колонка: список ЖК ── */}
-                <ul className="flex flex-col gap-3">
+                <div className="zk-list">
                     {points.map((p) => (
-                        <li
-                            key={p.name}
-                            className="card-sm hairline flex items-center gap-3"
-                            style={{borderRadius: 'var(--radius-md)'}}
-                        >
+                        <div className="zk" key={p.name}>
                             <span
-                                className="inline-block h-3 w-3 shrink-0 rounded-full"
+                                className="tick"
                                 style={{
-                                    backgroundColor: `var(${p.accentVar})`,
-                                    boxShadow: glowForAccent(p.accentVar),
+                                    background: `var(${p.accentVar})`,
+                                    boxShadow: `var(--glow-${p.accentVar.replace('--color-', '')})`,
                                 }}
-                                aria-hidden
                             />
-                            <span className="flex-1 text-sm text-tx">{p.name}</span>
-                            <span className="font-mono text-xs text-tx3">~{p.walkMinutes} мин</span>
-                        </li>
+                            <span className="time">~{p.walkMinutes} мин</span>
+                            <span className="name">{p.name}</span>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
+            <p className="loc-cap">{caption}</p>
         </section>
     );
-}
-
-function MapSvg({points, gymLabel}: { points: MapPoint[]; gymLabel: string }) {
-    return (
-        <div className="relative h-full w-full">
-            <svg
-                viewBox="0 0 100 100"
-                preserveAspectRatio="xMidYMid meet"
-                className="absolute inset-0 h-full w-full"
-                aria-label="Схема расположения зала и ближайших ЖК"
-            >
-                {/* Сетка улиц (приглушённая) */}
-                {Array.from({length: 9}).map((_, i) => (
-                    <line
-                        key={`h-${i}`}
-                        x1={0}
-                        y1={(i + 1) * 10}
-                        x2={100}
-                        y2={(i + 1) * 10}
-                        stroke="rgba(255,255,255,0.04)"
-                        strokeWidth={0.4}
-                    />
-                ))}
-                {Array.from({length: 9}).map((_, i) => (
-                    <line
-                        key={`v-${i}`}
-                        x1={(i + 1) * 10}
-                        y1={0}
-                        x2={(i + 1) * 10}
-                        y2={100}
-                        stroke="rgba(255,255,255,0.04)"
-                        strokeWidth={0.4}
-                    />
-                ))}
-                {/* Диагональный «проспект» */}
-                <line
-                    x1={5}
-                    y1={95}
-                    x2={95}
-                    y2={5}
-                    stroke="rgba(139,92,255,0.18)"
-                    strokeWidth={1.4}
-                    strokeLinecap="round"
-                />
-
-                {/* Радар: 3 кольца с задержкой */}
-                <circle cx={50} cy={50} r={10} fill="none" stroke="rgba(44,230,255,0.5)" strokeWidth={0.6}
-                        className="radar-ring radar-ring--d1"/>
-                <circle cx={50} cy={50} r={10} fill="none" stroke="rgba(139,92,255,0.4)" strokeWidth={0.6}
-                        className="radar-ring radar-ring--d2"/>
-                <circle cx={50} cy={50} r={10} fill="none" stroke="rgba(255,79,216,0.3)" strokeWidth={0.6}
-                        className="radar-ring radar-ring--d3"/>
-
-                {/* Пины ЖК */}
-                {points.map((p) => (
-                    <g key={p.name}>
-                        <circle
-                            cx={p.x}
-                            cy={p.y}
-                            r={2.6}
-                            fill={`var(${p.accentVar})`}
-                            style={{filter: `drop-shadow(0 0 4px ${rgbaForAccent(p.accentVar, 0.85)})`}}
-                        />
-                    </g>
-                ))}
-
-                {/* Центр: бейдж-зал */}
-                <g>
-                    <circle
-                        cx={50}
-                        cy={50}
-                        r={6}
-                        fill="url(#gymGradient)"
-                        style={{filter: 'drop-shadow(0 0 8px rgba(44,230,255,0.7))'}}
-                    />
-                    <text
-                        x={50}
-                        y={51.5}
-                        textAnchor="middle"
-                        fontSize={4}
-                        fontWeight={700}
-                        fill="#06121b"
-                        fontFamily="var(--font-display), Georgia, serif"
-                    >
-                        K
-                    </text>
-                </g>
-
-                <defs>
-                    <linearGradient id="gymGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8B5CFF"/>
-                        <stop offset="100%" stopColor="#2CE6FF"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-
-            {/* Подпись зала под SVG */}
-            <p
-                className="absolute inset-x-0 bottom-1 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-tx3 md:text-xs"
-                aria-hidden
-            >
-                {gymLabel}
-            </p>
-        </div>
-    );
-}
-
-function glowForAccent(v: MapPoint['accentVar']): string {
-    switch (v) {
-        case '--color-cyan':
-            return 'var(--glow-cyan)';
-        case '--color-violet':
-            return 'var(--glow-violet)';
-        case '--color-green':
-            return 'var(--glow-green)';
-        case '--color-pink':
-            return 'var(--glow-pink)';
-    }
-}
-
-function rgbaForAccent(v: MapPoint['accentVar'], a: number): string {
-    switch (v) {
-        case '--color-cyan':
-            return `rgba(44,230,255,${a})`;
-        case '--color-violet':
-            return `rgba(139,92,255,${a})`;
-        case '--color-green':
-            return `rgba(54,255,157,${a})`;
-        case '--color-pink':
-            return `rgba(255,79,216,${a})`;
-    }
 }
