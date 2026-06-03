@@ -26,8 +26,9 @@ describe('SLOTS data (SPEC §9.4, v3.3)', () => {
 
     it('у элементов нет profileHint и walkMinutes (v3.3 — теги убраны)', () => {
         for (const s of SLOTS) {
-            expect(s.profileHint).toBeUndefined();
-            expect(s.walkMinutes).toBeUndefined();
+            const raw = s as unknown as Record<string, unknown>;
+            expect(raw.profileHint).toBeUndefined();
+            expect(raw.walkMinutes).toBeUndefined();
         }
     });
 

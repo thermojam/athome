@@ -1,14 +1,10 @@
 export type ProfileKey = 'health' | 'body' | 'energy';
 
 // v3.3 §5.5: иконки болей — ключи Lucide-компонентов
-// v3.3 переименовывает: bone → activity, repeat → trending-down (см. landing-final.html стр.305-307)
 export type ProblemIcon =
     | 'activity'
     | 'trending-down'
-    | 'battery-low'
-    // DEPRECATED — sprint 3 (старые ключи, переезжают на новые)
-    | 'bone'
-    | 'repeat';
+    | 'battery-low';
 
 export interface Profile {
     key: ProfileKey;
@@ -58,10 +54,6 @@ export interface Slot {
     time: string;
     label: string;
     status: 'free';
-    /** DEPRECATED — sprint 3: убирается из v3.3 (см. SPEC §9.2) */
-    profileHint?: ProfileKey;
-    /** DEPRECATED — sprint 3: убирается из v3.3 (см. SPEC §9.2) */
-    walkMinutes?: number;
 }
 
 export interface SiteContent {
@@ -82,10 +74,6 @@ export interface SiteContent {
         /** v3.3: текст вторичной CTA (ведёт на #booking) */
         ctaSecondary: string;
         microcopy: string;
-        /** DEPRECATED — sprint 3: пилюли убраны в v3.3 (см. landing-final.html — hero без .pill-row) */
-        pills?: string[];
-        /** DEPRECATED — sprint 3: заменено на h1Lead + h1Accent */
-        h1?: string;
     };
     problem: {
         kicker: string;
@@ -95,8 +83,6 @@ export interface SiteContent {
             iconKey: ProblemIcon;
             title: string;
             text: string;
-            /** DEPRECATED — sprint 3 (старое имя поля) */
-            icon?: ProblemIcon;
         }[];
         summaryLead: string;
         summaryRest: string;
@@ -124,14 +110,6 @@ export interface SiteContent {
             title: string;
             text: string;
         }[];
-        /** DEPRECATED — sprint 3 (BAB-колонки) */
-        before?: string[];
-        /** DEPRECATED — sprint 3 */
-        bridge?: string;
-        /** DEPRECATED — sprint 3 */
-        after?: string;
-        /** DEPRECATED — sprint 3 */
-        afterItems?: string[];
     };
     quiz: {
         kicker: string;
@@ -152,10 +130,6 @@ export interface SiteContent {
         pickLabel: string;
         ctaLabel: string;
         honestyNote: string;
-        /** DEPRECATED — sprint 3 */
-        body?: string;
-        /** DEPRECATED — sprint 3 */
-        pillGym?: string;
     };
     objections: {
         kicker: string;
@@ -171,10 +145,6 @@ export interface SiteContent {
         cta2: string;
         /** v3.3: микрокопи под кнопками */
         microcopy: string;
-        /** DEPRECATED — sprint 3 */
-        text?: string;
-        /** DEPRECATED — sprint 3 */
-        guarantee?: string;
     };
     about: {
         kicker: string;

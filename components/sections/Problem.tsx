@@ -2,19 +2,11 @@ import {Activity, TrendingDown, BatteryLow, type LucideIcon} from 'lucide-react'
 import {CONTENT} from '@/lib/quiz-data';
 import type {ProblemIcon} from '@/lib/types';
 
-const ICON_MAP: Record<'activity' | 'trending-down' | 'battery-low', LucideIcon> = {
+const ICON_MAP: Record<ProblemIcon, LucideIcon> = {
     'activity': Activity,
     'trending-down': TrendingDown,
     'battery-low': BatteryLow,
 };
-
-function resolveIconKey(c: { iconKey?: ProblemIcon; icon?: ProblemIcon }): 'activity' | 'trending-down' | 'battery-low' {
-    const k = (c.iconKey ?? c.icon ?? 'activity');
-    if (k === 'activity' || k === 'trending-down' || k === 'battery-low') return k;
-    if (k === 'bone') return 'activity';
-    if (k === 'repeat') return 'trending-down';
-    return 'activity';
-}
 
 export function Problem() {
     const {kicker, h2, cards, summaryLead, summaryRest} = CONTENT.problem;
@@ -32,7 +24,7 @@ export function Problem() {
 
             <div data-testid="pain-row" className="mt-10 grid gap-5 md:grid-cols-3">
                 {cards.map((c) => {
-                    const key = resolveIconKey(c);
+                    const key = c.iconKey;
                     const Icon = ICON_MAP[key];
                     return (
                         <div key={c.title} data-testid="pain-card" className="card-md flex flex-col gap-4">
