@@ -1,4 +1,7 @@
 import {describe, it, expect} from 'vitest';
+import {createElement} from 'react';
+import {render, screen} from '@testing-library/react';
+import {Bridge} from '@/components/ui/Bridge';
 import {BRIDGES} from '@/lib/quiz-data';
 
 describe('BRIDGES (v3.3 §6 — порядок воронки)', () => {
@@ -26,6 +29,12 @@ describe('BRIDGES (v3.3 §6 — порядок воронки)', () => {
             expect(b.question).toBeTruthy();
             expect(b.cta).toBeTruthy();
             expect(b.href).toMatch(/^#/);
+            expect(b.cta).not.toMatch(/[→↓✈↺]/);
         }
+    });
+
+    it('кнопка мостика получает отдельный cyan accent class', () => {
+        render(createElement(Bridge, {data: BRIDGES.toQuiz}));
+        expect(screen.getByRole('link', {name: 'пройти разбор'})).toHaveClass('bridge-pill');
     });
 });

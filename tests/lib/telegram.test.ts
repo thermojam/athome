@@ -28,10 +28,10 @@ describe('buildTelegramLink', () => {
     );
   });
 
-  it('falls back to "placeholder" when env is missing', () => {
+  it('throws when Telegram username env is missing', () => {
     vi.stubEnv('NEXT_PUBLIC_TG_USERNAME', '');
-    expect(buildTelegramLink('hi')).toMatch(
-      /^https:\/\/t\.me\/placeholder\?text=/,
+    expect(() => buildTelegramLink('hi')).toThrow(
+      'NEXT_PUBLIC_TG_USERNAME is required',
     );
   });
 });

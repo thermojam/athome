@@ -52,19 +52,19 @@ export function QuizResult({
 
             <p className="text-xs text-tx3">{CONTENT.quiz.resultNote}</p>
 
-            <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-2 flex min-w-0 flex-col gap-3 sm:flex-row">
                 <TrackedLink
                     href={tgHref}
                     goal={`lead_click_${profile.key}` as const}
                     external
-                    className="btn btn-lg btn-primary"
+                    className="btn btn-lg btn-primary w-full min-w-0 whitespace-normal text-center sm:w-auto"
                 >
-                    Записаться на бесплатную встречу →
+                    Записаться на встречу
                 </TrackedLink>
                 <button
                     type="button"
                     onClick={onRestart}
-                    className="btn btn-lg btn-secondary"
+                    className="btn btn-lg btn-secondary w-full min-w-0 whitespace-normal text-center sm:w-auto"
                 >
                     {CONTENT.quiz.restart}
                 </button>

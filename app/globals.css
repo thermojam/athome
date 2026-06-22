@@ -192,6 +192,15 @@ body {
     border: 1px solid var(--line);
     box-shadow: var(--edge-highlight);
   }
+  .bridge-pill {
+    color: var(--color-cyan);
+    background: rgba(44,230,255,0.08);
+    border-color: rgba(44,230,255,0.62);
+    box-shadow: var(--edge-highlight),
+                inset 0 0 14px rgba(44,230,255,0.1),
+                0 0 0 1px rgba(44,230,255,0.55),
+                0 0 24px rgba(44,230,255,0.28);
+  }
 
   /* типографические голоса */
   .kicker {
@@ -379,7 +388,11 @@ body {
 
 /* ── ABOUT (v3.3 §8.6) ── */
 .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 36px; align-items: center; }
-@media (max-width: 820px) { .about { grid-template-columns: 1fr; } }
+@media (max-width: 820px) {
+  .about { grid-template-columns: 1fr; }
+  .about-cta { flex-direction: column; align-items: stretch; }
+  .about-cta .btn { width: 100%; }
+}
 .about-photo {
   position: relative; border-radius: var(--radius-xl); overflow: hidden;
   border: 1px solid var(--line); box-shadow: var(--edge-highlight), var(--lift);
@@ -416,7 +429,12 @@ body {
 
 /* ── BOOKING slot — изменения v3.3: 6 колонок, кнопка auto-width ── */
 .slot-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-@media (max-width: 560px) { .slot-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) {
+  .slot-top { flex-wrap: wrap; }
+  .slot-top > div { min-width: 0; }
+  .badge-free { max-width: 100%; margin-left: auto; box-sizing: border-box; font-size: 10px; letter-spacing: 1px; padding: 6px 10px; }
+  .slot-grid { grid-template-columns: repeat(3, 1fr); }
+}
 .btn-take { display: flex; margin: 24px auto 0; }
 
 /* ── ADAPTIVE ≤420 (v3.3) ── */
@@ -426,7 +444,7 @@ body {
   .card { padding: 22px 18px; }
   .slot-top { flex-wrap: wrap; }
   .slot-top > div { min-width: 0; }
-  .badge-free { max-width: 100%; margin-left: auto; box-sizing: border-box; }
+  .badge-free { max-width: 100%; margin-left: auto; box-sizing: border-box; font-size: 10px; letter-spacing: 1px; padding: 6px 10px; }
   .slot-grid { grid-template-columns: repeat(2, 1fr); }
   .loc-full .map-box { aspect-ratio: 1/1; }
   .tr-node { width: 60px; height: 60px; }

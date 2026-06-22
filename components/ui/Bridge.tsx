@@ -12,10 +12,10 @@ export function Bridge({data}: { data: BridgeContent }) {
             </p>
             <a
                 href={data.href}
-                className="pill transition-colors hover:!border-cyan hover:!text-cyan"
+                className="pill bridge-pill transition-colors hover:!border-cyan hover:!text-cyan"
                 style={{cursor: 'pointer'}}
             >
-                {data.cta} <span aria-hidden>→</span>
+                {data.cta}
             </a>
         </div>
     );

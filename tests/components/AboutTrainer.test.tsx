@@ -41,14 +41,20 @@ describe('AboutTrainer (SPEC §8.6)', () => {
 
     it('первая CTA ведёт на #test', () => {
         render(<AboutTrainer/>);
-        const cta1 = screen.getByRole('link', {name: new RegExp(CONTENT.about.cta1.replace(/[^а-яА-ЯёЁa-zA-Z]+/g, '.*'))});
+        const cta1 = screen.getByRole('link', {name: CONTENT.about.cta1});
         expect(cta1.getAttribute('href')).toBe('#test');
     });
 
     it('вторая CTA — Telegram-deeplink', () => {
         render(<AboutTrainer/>);
-        const cta2 = screen.getByRole('link', {name: /Сразу написать/});
+        const cta2 = screen.getByRole('link', {name: CONTENT.about.cta2});
         expect(cta2.getAttribute('href')).toMatch(/^https:\/\/t\.me\//);
+    });
+
+    it('CTA labels не содержат декоративных иконок', () => {
+        render(<AboutTrainer/>);
+        expect(screen.getByRole('link', {name: 'Пройти разбор за 60 секунд'})).toBeInTheDocument();
+        expect(screen.getByRole('link', {name: 'Сразу написать'})).toBeInTheDocument();
     });
 
     it('микрокопи под кнопками виден', () => {
