@@ -56,7 +56,7 @@
     linear-gradient(180deg, #121624 0%, #0E1117 40%, #0A0D13 100%);
 
     /* v3.1: единый контейнер, ритм секций, размеры кнопок, кривая появления */
-    --container: 1080px;
+    --container: 1200px;
     --space-section: 88px;
     --btn-lg-pad: 16px 30px;
     --btn-lg-fs: 17px;
