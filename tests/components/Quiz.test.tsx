@@ -39,14 +39,14 @@ describe('Quiz (§15.4)', () => {
     expect(screen.getByText(PROFILES.health.title)).toBeInTheDocument();
   });
 
-  it('restarts to the first question on "Пройти заново"', async () => {
+  it('restarts to the first question on "Пройти квиз заново"', async () => {
     const user = userEvent.setup();
     render(<Quiz />);
     for (let i = 0; i < 3; i++) {
       await user.click(screen.getAllByRole('button').find((b) => b.textContent?.includes(QUESTIONS[i].options[0].label))!);
     }
     expect(screen.getByText(PROFILES.health.title)).toBeInTheDocument();
-    await user.click(screen.getByText(/пройти заново/i));
+    await user.click(screen.getByText(/пройти квиз заново/i));
     expect(screen.getByText(QUESTIONS[0].title)).toBeInTheDocument();
   });
 
@@ -62,5 +62,15 @@ describe('Quiz (§15.4)', () => {
     const completes = ym.mock.calls.filter((c) => c[2] === 'quiz_complete');
     expect(starts).toHaveLength(1);
     expect(completes).toHaveLength(1);
+  });
+
+  it('uses compact result CTA labels', async () => {
+    const user = userEvent.setup();
+    render(<Quiz />);
+    for (let i = 0; i < 3; i++) {
+      await user.click(screen.getAllByRole('button').find((b) => b.textContent?.includes(QUESTIONS[i].options[0].label))!);
+    }
+    expect(screen.getByRole('link', {name: 'Записаться на встречу'})).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'Пройти квиз заново'})).toBeInTheDocument();
   });
 });
