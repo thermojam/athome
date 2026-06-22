@@ -6,6 +6,13 @@ export function Hero() {
     return (
         <section id="hero" className="hero relative isolate overflow-hidden">
             <HeroBackground/>
+            <div className="absolute left-0 right-0 top-3 z-10 mx-auto w-full max-w-[var(--container)] px-4 md:top-4">
+                <img
+                    src="/logo.svg"
+                    alt="Логотип НК"
+                    className="h-16 w-16 md:h-20 md:w-20"
+                />
+            </div>
             <div className="hero-content mx-auto w-full max-w-[var(--container)] px-4 pb-20 pt-24 md:pb-28 md:pt-32">
                 <div className="flex flex-col gap-6">
                     <span className="kicker">{kicker}</span>

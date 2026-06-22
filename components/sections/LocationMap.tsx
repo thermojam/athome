@@ -45,10 +45,12 @@ export function LocationMap() {
                             <circle className="radar-static r3" cx="160" cy="92" r="62"/>
                             <circle className="radar-static r2" cx="160" cy="92" r="42"/>
                         </g>
-                        {/* центр-зал */}
-                        <circle cx="160" cy="92" r="22" fill="url(#gymgrad)" stroke="rgba(44,230,255,0.7)" strokeWidth="1.5" style={{filter: 'drop-shadow(0 0 16px rgba(44,230,255,0.6))'}}/>
-                        <text x="160" y="93" textAnchor="middle" dominantBaseline="central" fontFamily="Georgia,serif" fontWeight="700" fontSize="16" fill="#0a0f1a">НК</text>
                     </svg>
+                    <img
+                        src="/logo.svg"
+                        alt="Логотип НК"
+                        className="map-logo"
+                    />
                     {/* пины */}
                     {points.map((p, i) => {
                         const fill =

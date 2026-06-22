@@ -33,6 +33,11 @@ export default function Home() {
             <Reveal><FinalCta/></Reveal>
             <footer className="mx-auto w-full max-w-[var(--container)] px-4 py-12 text-center">
                 <div className="border-t border-[--line-soft] pt-10">
+                    <img
+                        src="/logo.svg"
+                        alt="Логотип НК"
+                        className="mx-auto h-20 w-20"
+                    />
                     <p className="font-display text-xl uppercase tracking-tight text-tx">
                         {CONTENT.footer.brand}
                     </p>
