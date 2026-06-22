@@ -1,8 +1,7 @@
-const FALLBACK_USERNAME = 'placeholder';
-
 function readUsername(): string {
-    const raw = process.env.NEXT_PUBLIC_TG_USERNAME;
-    return raw && raw.length > 0 ? raw : FALLBACK_USERNAME;
+    const raw = process.env.NEXT_PUBLIC_TG_USERNAME?.trim();
+    if (!raw) throw new Error('NEXT_PUBLIC_TG_USERNAME is required');
+    return raw;
 }
 
 export function buildTelegramLink(message: string): string {
