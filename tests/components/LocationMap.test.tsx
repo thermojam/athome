@@ -39,4 +39,13 @@ describe('LocationMap (SPEC v3.3 §8)', () => {
         const hasCoast = Array.from(paths).some((p) => (p.getAttribute('fill') ?? '').includes('40,90,140'));
         expect(hasCoast).toBe(true);
     });
+
+    it('центр карты использует logo.svg вместо текстового НК', () => {
+        const {container} = render(<LocationMap/>);
+        const centerLogo = container.querySelector('.map-box > .map-logo') as HTMLImageElement | null;
+        expect(centerLogo).not.toBeNull();
+        expect(centerLogo?.getAttribute('src')).toBe('/logo.svg');
+        expect(centerLogo?.getAttribute('alt')).toBe('Логотип НК');
+        expect(container.querySelector('.map-box text')?.textContent).not.toBe('НК');
+    });
 });

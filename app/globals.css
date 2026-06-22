@@ -328,6 +328,11 @@ body {
   position: absolute; top: 54%; left: 50%; transform: translate(-50%, 0);
   z-index: 4; text-align: center;
 }
+.map-logo {
+  position: absolute; top: 41.82%; left: 50%; z-index: 4;
+  width: 34px; height: 34px; transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 16px rgba(44,230,255,0.6));
+}
 .gym-cap {
   font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px;
   color: var(--color-cyan); margin-top: 7px; white-space: nowrap;
