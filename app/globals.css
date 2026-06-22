@@ -424,6 +424,9 @@ body {
   h1 { font-size: 30px; }
   .hero { padding: 64px 0 24px; }
   .card { padding: 22px 18px; }
+  .slot-top { flex-wrap: wrap; }
+  .slot-top > div { min-width: 0; }
+  .badge-free { max-width: 100%; margin-left: auto; box-sizing: border-box; }
   .slot-grid { grid-template-columns: repeat(2, 1fr); }
   .loc-full .map-box { aspect-ratio: 1/1; }
   .tr-node { width: 60px; height: 60px; }

@@ -1,0 +1,487 @@
+{
+  "/Users/nikitamensky/Desktop/athome/.claude/settings.json": {
+    "mtime": 1782110206.298226,
+    "ast_hash": "e1073342e958ac9f00716938c8f165e3",
+    "semantic_hash": "e1073342e958ac9f00716938c8f165e3"
+  },
+  "/Users/nikitamensky/Desktop/athome/app/layout.tsx": {
+    "mtime": 1780249192.3020675,
+    "ast_hash": "4dc74b19391b9f17e66e17b3f667c78a",
+    "semantic_hash": "4dc74b19391b9f17e66e17b3f667c78a"
+  },
+  "/Users/nikitamensky/Desktop/athome/app/opengraph-image.tsx": {
+    "mtime": 1780249192.3027413,
+    "ast_hash": "3187a8f0a190ee6678c613a7366e87fc",
+    "semantic_hash": "3187a8f0a190ee6678c613a7366e87fc"
+  },
+  "/Users/nikitamensky/Desktop/athome/app/page.tsx": {
+    "mtime": 1780466822.3317542,
+    "ast_hash": "aacc9e3c3b7ac5282183d0703801c675",
+    "semantic_hash": "aacc9e3c3b7ac5282183d0703801c675"
+  },
+  "/Users/nikitamensky/Desktop/athome/app/privacy/page.tsx": {
+    "mtime": 1780249192.3035042,
+    "ast_hash": "7d09e775b131d206a09fe28c8c12108a",
+    "semantic_hash": "7d09e775b131d206a09fe28c8c12108a"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/analytics/YandexMetrika.tsx": {
+    "mtime": 1780249192.3039308,
+    "ast_hash": "59035ae1f5e36d3efafd76fdbe0ba72a",
+    "semantic_hash": "59035ae1f5e36d3efafd76fdbe0ba72a"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/quiz/ProgressBar.tsx": {
+    "mtime": 1780249192.3042612,
+    "ast_hash": "e84322667731991958fb09f31e0e4db1",
+    "semantic_hash": "e84322667731991958fb09f31e0e4db1"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/quiz/Quiz.tsx": {
+    "mtime": 1780249192.3044145,
+    "ast_hash": "033a90617456816cb82e35f0e582b3cb",
+    "semantic_hash": "033a90617456816cb82e35f0e582b3cb"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/quiz/QuizQuestion.tsx": {
+    "mtime": 1780249192.3046792,
+    "ast_hash": "b9ab3dd528b7ad0ff43bf9dd4844ef95",
+    "semantic_hash": "b9ab3dd528b7ad0ff43bf9dd4844ef95"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/quiz/QuizResult.tsx": {
+    "mtime": 1780249192.3048189,
+    "ast_hash": "a586cb74aa019927ff0f3e8af2fd6efd",
+    "semantic_hash": "a586cb74aa019927ff0f3e8af2fd6efd"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/AboutTrainer.tsx": {
+    "mtime": 1780468762.6179256,
+    "ast_hash": "1993528fd99bf07e7acd16c8ab290161",
+    "semantic_hash": "1993528fd99bf07e7acd16c8ab290161"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/BookingSlot.tsx": {
+    "mtime": 1780466822.3326344,
+    "ast_hash": "18345f53d1ad4e14297b723153404a78",
+    "semantic_hash": "18345f53d1ad4e14297b723153404a78"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/FinalCta.tsx": {
+    "mtime": 1780466822.3330638,
+    "ast_hash": "4399c04d251d341190d11e7d863089d3",
+    "semantic_hash": "4399c04d251d341190d11e7d863089d3"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/Hero.tsx": {
+    "mtime": 1780466822.3334804,
+    "ast_hash": "d647b4aa2e8e139d43bc491ad8d837e0",
+    "semantic_hash": "d647b4aa2e8e139d43bc491ad8d837e0"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/HeroBackground.tsx": {
+    "mtime": 1780466822.33365,
+    "ast_hash": "38204e89f2f2721c9ac56b551e02020c",
+    "semantic_hash": "38204e89f2f2721c9ac56b551e02020c"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/LocationMap.tsx": {
+    "mtime": 1780466822.3342216,
+    "ast_hash": "d2b08f31dead7f66496a2cfa0942f8c1",
+    "semantic_hash": "d2b08f31dead7f66496a2cfa0942f8c1"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/Objections.tsx": {
+    "mtime": 1780249192.3059983,
+    "ast_hash": "af9611a16102cbee9be62a259061cbe8",
+    "semantic_hash": "af9611a16102cbee9be62a259061cbe8"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/Problem.tsx": {
+    "mtime": 1780466822.3345337,
+    "ast_hash": "db1922b8e7769a30690fa5266bc5ba7d",
+    "semantic_hash": "db1922b8e7769a30690fa5266bc5ba7d"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/sections/Transformation.tsx": {
+    "mtime": 1780466822.334894,
+    "ast_hash": "445bd7041462620c884caa988f6c2778",
+    "semantic_hash": "445bd7041462620c884caa988f6c2778"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/Bridge.tsx": {
+    "mtime": 1780249192.3069806,
+    "ast_hash": "74bded120972cad1ab43480fb97553bb",
+    "semantic_hash": "74bded120972cad1ab43480fb97553bb"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/GlassCard.tsx": {
+    "mtime": 1780249192.307302,
+    "ast_hash": "cc109e864eb427480896b6325b67404d",
+    "semantic_hash": "cc109e864eb427480896b6325b67404d"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/Pill.tsx": {
+    "mtime": 1780249192.3076036,
+    "ast_hash": "96d25cfccbbf4062ea5bbbcb8d89e694",
+    "semantic_hash": "96d25cfccbbf4062ea5bbbcb8d89e694"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/Reveal.tsx": {
+    "mtime": 1780249192.3077688,
+    "ast_hash": "01a2f56c4102f4dc06f22147cbb338a6",
+    "semantic_hash": "01a2f56c4102f4dc06f22147cbb338a6"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/StickyCta.tsx": {
+    "mtime": 1780249192.307903,
+    "ast_hash": "478f01141854ee7006d23449ee4163be",
+    "semantic_hash": "478f01141854ee7006d23449ee4163be"
+  },
+  "/Users/nikitamensky/Desktop/athome/components/ui/TrackedLink.tsx": {
+    "mtime": 1780249192.3081727,
+    "ast_hash": "7911876de4efb697311e330001fbdfab",
+    "semantic_hash": "7911876de4efb697311e330001fbdfab"
+  },
+  "/Users/nikitamensky/Desktop/athome/eslint.config.mjs": {
+    "mtime": 1780062953.7980795,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/analytics.ts": {
+    "mtime": 1780249192.311364,
+    "ast_hash": "9ff26c77b83c371ce25b7e1a036fedb0",
+    "semantic_hash": "9ff26c77b83c371ce25b7e1a036fedb0"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/quiz-data.ts": {
+    "mtime": 1780469309.5752223,
+    "ast_hash": "6ae80ae99730e1cede69572d5e782adf",
+    "semantic_hash": "6ae80ae99730e1cede69572d5e782adf"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/quiz-logic.ts": {
+    "mtime": 1780249192.3118742,
+    "ast_hash": "4900425c074ee389f3f28577b1285e8d",
+    "semantic_hash": "4900425c074ee389f3f28577b1285e8d"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/slots-data.ts": {
+    "mtime": 1780466822.3400342,
+    "ast_hash": "5de717010b61df04cafc4f244060f31b",
+    "semantic_hash": "5de717010b61df04cafc4f244060f31b"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/telegram.ts": {
+    "mtime": 1780249192.3124874,
+    "ast_hash": "0508af40404a2372f1a5ade4482a61f3",
+    "semantic_hash": "0508af40404a2372f1a5ade4482a61f3"
+  },
+  "/Users/nikitamensky/Desktop/athome/lib/types.ts": {
+    "mtime": 1780466822.340652,
+    "ast_hash": "a70bd97121e4c56b48e2f43ac8cc6f95",
+    "semantic_hash": "a70bd97121e4c56b48e2f43ac8cc6f95"
+  },
+  "/Users/nikitamensky/Desktop/athome/next.config.ts": {
+    "mtime": 1780062953.798378,
+    "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
+    "semantic_hash": "9b77af189a21a7a64e4bd7a426f64176"
+  },
+  "/Users/nikitamensky/Desktop/athome/package.json": {
+    "mtime": 1780249192.3142173,
+    "ast_hash": "842bc7005862d0d220f752e539b3ce7b",
+    "semantic_hash": "842bc7005862d0d220f752e539b3ce7b"
+  },
+  "/Users/nikitamensky/Desktop/athome/playwright.config.ts": {
+    "mtime": 1780249192.3145916,
+    "ast_hash": "f9c79ee2fb0801c3c8031e116075c3bc",
+    "semantic_hash": "f9c79ee2fb0801c3c8031e116075c3bc"
+  },
+  "/Users/nikitamensky/Desktop/athome/postcss.config.mjs": {
+    "mtime": 1780062953.798204,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/AboutTrainer.test.tsx": {
+    "mtime": 1780468814.1617491,
+    "ast_hash": "5fc7862ba29a5c97f4ce915f19f93dac",
+    "semantic_hash": "5fc7862ba29a5c97f4ce915f19f93dac"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/BookingSlot.test.tsx": {
+    "mtime": 1780466822.342275,
+    "ast_hash": "0f116d303ce660b734235c7bdcf6e3d7",
+    "semantic_hash": "0f116d303ce660b734235c7bdcf6e3d7"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/FinalCta.test.tsx": {
+    "mtime": 1780466822.3424246,
+    "ast_hash": "6725a7f7fa0c49e32fbec3730e37e034",
+    "semantic_hash": "6725a7f7fa0c49e32fbec3730e37e034"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/Hero.test.tsx": {
+    "mtime": 1780466822.3425875,
+    "ast_hash": "06066b456674c8c6ed0e3bb56d5e8760",
+    "semantic_hash": "06066b456674c8c6ed0e3bb56d5e8760"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/HeroBackground.test.tsx": {
+    "mtime": 1780466822.3427966,
+    "ast_hash": "f9d9c6a11a547db34f941032daaeebec",
+    "semantic_hash": "f9d9c6a11a547db34f941032daaeebec"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/LocationMap.test.tsx": {
+    "mtime": 1780469326.6066525,
+    "ast_hash": "8995b75475b0ab09a91d171f1d28d9b5",
+    "semantic_hash": "8995b75475b0ab09a91d171f1d28d9b5"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/Objections.test.tsx": {
+    "mtime": 1780249192.3182824,
+    "ast_hash": "a525ad8de557a6d42e9ab72f8569a5b5",
+    "semantic_hash": "a525ad8de557a6d42e9ab72f8569a5b5"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/Problem.test.tsx": {
+    "mtime": 1780466822.343354,
+    "ast_hash": "4768f3d96eb6f7c5ce9fb475bfa099b2",
+    "semantic_hash": "4768f3d96eb6f7c5ce9fb475bfa099b2"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/Quiz.test.tsx": {
+    "mtime": 1780249192.319043,
+    "ast_hash": "930e2158ddc7f2eb901692b1fc04ce75",
+    "semantic_hash": "930e2158ddc7f2eb901692b1fc04ce75"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/components/Transformation.test.tsx": {
+    "mtime": 1780466822.3435194,
+    "ast_hash": "984ba694ce613e697028655056118444",
+    "semantic_hash": "984ba694ce613e697028655056118444"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/adaptive-420.spec.ts": {
+    "mtime": 1780466822.3436852,
+    "ast_hash": "19d0923484bb6cb43aec582a292a446e",
+    "semantic_hash": "19d0923484bb6cb43aec582a292a446e"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/booking-6days.spec.ts": {
+    "mtime": 1780466822.3438313,
+    "ast_hash": "1250e6db20125a6debc039801036b4ae",
+    "semantic_hash": "1250e6db20125a6debc039801036b4ae"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/booking-slot.spec.ts": {
+    "mtime": 1780466822.3449402,
+    "ast_hash": "fdf1be776aa2938b534bbba8d0cd5c86",
+    "semantic_hash": "fdf1be776aa2938b534bbba8d0cd5c86"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/final-no-frame.spec.ts": {
+    "mtime": 1780466822.3451595,
+    "ast_hash": "079049382b44d4e9abff8f66c4342657",
+    "semantic_hash": "079049382b44d4e9abff8f66c4342657"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/hero-bg.spec.ts": {
+    "mtime": 1780466822.3453016,
+    "ast_hash": "a2ffc3c438279e2c6a33184c9661b35d",
+    "semantic_hash": "a2ffc3c438279e2c6a33184c9661b35d"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/map-order.spec.ts": {
+    "mtime": 1780469333.3581023,
+    "ast_hash": "446b18d065963647b7137d31dabf0dd5",
+    "semantic_hash": "446b18d065963647b7137d31dabf0dd5"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/mobile-sticky.spec.ts": {
+    "mtime": 1780466822.3459272,
+    "ast_hash": "a10b0f53805eba62fa1e8e3e5665961c",
+    "semantic_hash": "a10b0f53805eba62fa1e8e3e5665961c"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/quiz-flow.spec.ts": {
+    "mtime": 1780466822.346286,
+    "ast_hash": "5e8ff4d3d9abfe7136cdfe6fc534af1e",
+    "semantic_hash": "5e8ff4d3d9abfe7136cdfe6fc534af1e"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/reduced-motion.spec.ts": {
+    "mtime": 1780469350.6104999,
+    "ast_hash": "e9e03b2f8ef53016c46a341c1283e7b4",
+    "semantic_hash": "e9e03b2f8ef53016c46a341c1283e7b4"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/section-order.spec.ts": {
+    "mtime": 1780466822.3466885,
+    "ast_hash": "28f2fefbedb98cb42d4459fe14c791b5",
+    "semantic_hash": "28f2fefbedb98cb42d4459fe14c791b5"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/e2e/transformation.spec.ts": {
+    "mtime": 1780466822.3470452,
+    "ast_hash": "b46bdd16d39e4ac26cc8b1f3041be663",
+    "semantic_hash": "b46bdd16d39e4ac26cc8b1f3041be663"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/lib/analytics.test.ts": {
+    "mtime": 1780249192.320611,
+    "ast_hash": "a687f534bc4ea7cea0f96923d0c4e4e2",
+    "semantic_hash": "a687f534bc4ea7cea0f96923d0c4e4e2"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/lib/bridges.test.ts": {
+    "mtime": 1780466822.3474014,
+    "ast_hash": "f457bb357ef7a2865f2d0bf3908647aa",
+    "semantic_hash": "f457bb357ef7a2865f2d0bf3908647aa"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/lib/quiz-logic.test.ts": {
+    "mtime": 1780249192.320887,
+    "ast_hash": "fc992f996976774eb7d9f3f242d0cea4",
+    "semantic_hash": "fc992f996976774eb7d9f3f242d0cea4"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/lib/slots-data.test.ts": {
+    "mtime": 1780466822.3478096,
+    "ast_hash": "de9f2bf2752377d64202580ffca859ae",
+    "semantic_hash": "de9f2bf2752377d64202580ffca859ae"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/lib/telegram.test.ts": {
+    "mtime": 1780249192.3215506,
+    "ast_hash": "5c70a7a91bd8424ae5ef6644afc4b25d",
+    "semantic_hash": "5c70a7a91bd8424ae5ef6644afc4b25d"
+  },
+  "/Users/nikitamensky/Desktop/athome/tests/setup.ts": {
+    "mtime": 1780249192.3218687,
+    "ast_hash": "28f28b341b7e818f5be726a38dea37a8",
+    "semantic_hash": "28f28b341b7e818f5be726a38dea37a8"
+  },
+  "/Users/nikitamensky/Desktop/athome/tsconfig.json": {
+    "mtime": 1780249192.322302,
+    "ast_hash": "520b4547eafba4a591d5e3c4730602ef",
+    "semantic_hash": "520b4547eafba4a591d5e3c4730602ef"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/CLAUDE.md": {
+    "mtime": 1782110206.2970579,
+    "ast_hash": "db73b0edd7ffbc61ceac177130730865",
+    "semantic_hash": "db73b0edd7ffbc61ceac177130730865"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/SKILL.md": {
+    "mtime": 1782110206.296667,
+    "ast_hash": "97c2755905a5a0e53b96b31c725a7010",
+    "semantic_hash": "97c2755905a5a0e53b96b31c725a7010"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/add-watch.md": {
+    "mtime": 1781502804.0523825,
+    "ast_hash": "0df0589623217ca38a12bdcabfb42f4c",
+    "semantic_hash": "0df0589623217ca38a12bdcabfb42f4c"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/exports.md": {
+    "mtime": 1781502804.0524867,
+    "ast_hash": "c04ddf8f1f5ef5e262ebec491a523c74",
+    "semantic_hash": "c04ddf8f1f5ef5e262ebec491a523c74"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1781502804.0527785,
+    "ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+    "semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1781502804.0528774,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": "cde13df085e4c492aeb7ba298a996d0d"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/hooks.md": {
+    "mtime": 1781502804.0530014,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": "3f545db6ce646650bb9de588f5512a27"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/query.md": {
+    "mtime": 1781502804.053292,
+    "ast_hash": "8b40ed8c9e9060fc215219a8fc964091",
+    "semantic_hash": "8b40ed8c9e9060fc215219a8fc964091"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/transcribe.md": {
+    "mtime": 1781502804.0563202,
+    "ast_hash": "70f6aa30d6211f3a2c7e9fc45479f50c",
+    "semantic_hash": "70f6aa30d6211f3a2c7e9fc45479f50c"
+  },
+  "/Users/nikitamensky/Desktop/athome/.claude/skills/graphify/references/update.md": {
+    "mtime": 1781502804.0569477,
+    "ast_hash": "0dad167a95bdb389f02fecffb60b1bc8",
+    "semantic_hash": "0dad167a95bdb389f02fecffb60b1bc8"
+  },
+  "/Users/nikitamensky/Desktop/athome/AGENTS.md": {
+    "mtime": 1780063039.783719,
+    "ast_hash": "9e09241799026ac05be315a2f0b50055",
+    "semantic_hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "/Users/nikitamensky/Desktop/athome/CLAUDE.md": {
+    "mtime": 1782110206.2979825,
+    "ast_hash": "599619ec53e22571aa082f8685b30189",
+    "semantic_hash": "599619ec53e22571aa082f8685b30189"
+  },
+  "/Users/nikitamensky/Desktop/athome/README.md": {
+    "mtime": 1780062953.7977226,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "/Users/nikitamensky/Desktop/athome/SPEC-trener-u-doma-v3.1.md": {
+    "mtime": 1780467114.9318125,
+    "ast_hash": "ef897266585e8636a82b74aea4ff34f5",
+    "semantic_hash": "ef897266585e8636a82b74aea4ff34f5"
+  },
+  "/Users/nikitamensky/Desktop/athome/SPEC-trener-u-doma-v3.md": {
+    "mtime": 1780467114.9321957,
+    "ast_hash": "ffc67cf5d496706982020ab6daddec73",
+    "semantic_hash": "ffc67cf5d496706982020ab6daddec73"
+  },
+  "/Users/nikitamensky/Desktop/athome/SPEC.md": {
+    "mtime": 1780064112.9836295,
+    "ast_hash": "937da62ccf6736bafe4ae5a4c46cf943",
+    "semantic_hash": "937da62ccf6736bafe4ae5a4c46cf943"
+  },
+  "/Users/nikitamensky/Desktop/athome/VISUAL-REFERENCE.html": {
+    "mtime": 1780249192.301155,
+    "ast_hash": "bd5f25cb54655b67afeb160ab5f7ca0f",
+    "semantic_hash": "bd5f25cb54655b67afeb160ab5f7ca0f"
+  },
+  "/Users/nikitamensky/Desktop/athome/app/opengraph-image.alt.txt": {
+    "mtime": 1780249192.3023808,
+    "ast_hash": "0e669df7443495989c63b69153820f64",
+    "semantic_hash": "0e669df7443495989c63b69153820f64"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/plans/2026-05-29-athome-mvp.md": {
+    "mtime": 1780249192.3090503,
+    "ast_hash": "1ea8e354e1b6fb35991f61281f053149",
+    "semantic_hash": "1ea8e354e1b6fb35991f61281f053149"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/plans/2026-05-31-sprint-2.md": {
+    "mtime": 1780249192.3098624,
+    "ast_hash": "623c02ef66f3a46927e7840a40ccf626",
+    "semantic_hash": "623c02ef66f3a46927e7840a40ccf626"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/plans/2026-06-01-sprint-3.md": {
+    "mtime": 1780466822.3381078,
+    "ast_hash": "f0dd1923c80e771f705004170bbd23ef",
+    "semantic_hash": "f0dd1923c80e771f705004170bbd23ef"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/specs/2026-05-29-athome-mvp-design.md": {
+    "mtime": 1780249192.3105235,
+    "ast_hash": "6400fee354ea9a8bc6779ba2239691a5",
+    "semantic_hash": "6400fee354ea9a8bc6779ba2239691a5"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/specs/2026-05-31-sprint-2-design.md": {
+    "mtime": 1780249192.3109016,
+    "ast_hash": "e71e233e965e61b9fbee75b3badc1895",
+    "semantic_hash": "e71e233e965e61b9fbee75b3badc1895"
+  },
+  "/Users/nikitamensky/Desktop/athome/docs/superpowers/specs/2026-06-01-v3.3-update-design.md": {
+    "mtime": 1780466822.3384998,
+    "ast_hash": "b0cae4cc3eb721cb6e1f9738f2f50760",
+    "semantic_hash": "b0cae4cc3eb721cb6e1f9738f2f50760"
+  },
+  "/Users/nikitamensky/Desktop/athome/landing-final.html": {
+    "mtime": 1780320126.0,
+    "ast_hash": "f3afe2a9cd8710002dc0aee34febc067",
+    "semantic_hash": "f3afe2a9cd8710002dc0aee34febc067"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/fonts/gerhaus/License.txt": {
+    "mtime": 1780249192.3172712,
+    "ast_hash": "73d8bf6d2025c6264ba1602fb9a4d645",
+    "semantic_hash": "73d8bf6d2025c6264ba1602fb9a4d645"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/fonts/gerhaus/readme.txt": {
+    "mtime": 1780249192.31754,
+    "ast_hash": "7834cc97da81621a3e4c1112b1afc0cd",
+    "semantic_hash": "7834cc97da81621a3e4c1112b1afc0cd"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/about-photo.webp": {
+    "mtime": 1780468611.2804568,
+    "ast_hash": "e4fa9c86d5e51e9b16c260713239e47c",
+    "semantic_hash": "e4fa9c86d5e51e9b16c260713239e47c"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/file.svg": {
+    "mtime": 1780062953.7975798,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/globe.svg": {
+    "mtime": 1780062953.7987509,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/next.svg": {
+    "mtime": 1780062953.7988474,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/vercel.svg": {
+    "mtime": 1780062953.7987978,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "/Users/nikitamensky/Desktop/athome/public/window.svg": {
+    "mtime": 1780062953.7990894,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

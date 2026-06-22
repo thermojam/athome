@@ -9,6 +9,19 @@ test('390×844: .slot-grid даёт 2 колонки', async ({page}) => {
     expect(cols).toBeLessThanOrEqual(2);
 });
 
+test('390×844: бейдж свободного слота не выходит за карточку', async ({page}) => {
+    await page.goto('/#booking');
+    const card = await page.locator('#booking .slot-wrap').boundingBox();
+    const badge = await page.locator('#booking .badge-free').boundingBox();
+
+    expect(card).not.toBeNull();
+    expect(badge).not.toBeNull();
+    if (card && badge) {
+        expect(badge.left).toBeGreaterThanOrEqual(card.left);
+        expect(badge.right).toBeLessThanOrEqual(card.right);
+    }
+});
+
 test('390×844: .map-box близок к квадрату (aspect ~1)', async ({page}) => {
     await page.goto('/#map');
     const box = await page.locator('#map .map-box').boundingBox();
