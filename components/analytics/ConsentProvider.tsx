@@ -25,6 +25,8 @@ export function ConsentProvider({children}: {children: React.ReactNode}): React.
     const [decision, setDecision] = useState<ConsentState>(undefined);
 
     useEffect(() => {
+        // Intentional post-hydration read: localStorage is unavailable during SSR.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setDecision(readConsent());
     }, []);
 

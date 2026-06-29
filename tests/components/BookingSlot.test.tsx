@@ -3,15 +3,18 @@ import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {BookingSlot} from '@/components/sections/BookingSlot';
 import {SLOTS} from '@/lib/slots-data';
+import {clearConsent, writeConsent} from '@/lib/consent';
 
 describe('BookingSlot (SPEC v3.3 §9)', () => {
     beforeEach(() => {
         vi.stubEnv('NEXT_PUBLIC_YM_ID', '99999999');
         vi.stubEnv('NEXT_PUBLIC_TG_USERNAME', 'test_user');
+        writeConsent('accepted');
     });
     afterEach(() => {
         vi.unstubAllEnvs();
         delete window.ym;
+        clearConsent();
     });
 
     it('секция id="booking"', () => {

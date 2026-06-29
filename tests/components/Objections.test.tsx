@@ -2,14 +2,17 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Objections } from '@/components/sections/Objections';
+import {clearConsent, writeConsent} from '@/lib/consent';
 
 describe('Objections accordion (§15.5)', () => {
   beforeEach(() => {
     vi.stubEnv('NEXT_PUBLIC_YM_ID', '99999999');
+    writeConsent('accepted');
   });
   afterEach(() => {
     vi.unstubAllEnvs();
     delete window.ym;
+    clearConsent();
   });
 
   it('renders all questions collapsed by default', () => {

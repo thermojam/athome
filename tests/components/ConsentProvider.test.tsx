@@ -13,7 +13,7 @@ function ConsentProbe() {
 
     return (
         <div>
-            <output>{decision ?? 'none'}</output>
+            <output>{decision === undefined ? 'loading' : decision ?? 'none'}</output>
             <button type="button" onClick={accept}>accept</button>
             <button type="button" onClick={decline}>decline</button>
             <button type="button" onClick={reopen}>reopen</button>
@@ -39,6 +39,7 @@ describe('ConsentProvider', () => {
 
         await screen.findByText('none');
         expect(screen.queryByTestId('metrika')).not.toBeInTheDocument();
+        expect(screen.getByRole('region', {name: 'Согласие на cookies'})).toBeInTheDocument();
     });
 
     it('hydrates accepted consent and mounts Metrika', async () => {
@@ -47,6 +48,7 @@ describe('ConsentProvider', () => {
 
         await screen.findByText('accepted');
         expect(screen.getByTestId('metrika')).toBeInTheDocument();
+        expect(screen.queryByRole('region', {name: 'Согласие на cookies'})).not.toBeInTheDocument();
     });
 
     it('hydrates declined consent without mounting Metrika', async () => {
@@ -55,6 +57,7 @@ describe('ConsentProvider', () => {
 
         await screen.findByText('declined');
         expect(screen.queryByTestId('metrika')).not.toBeInTheDocument();
+        expect(screen.queryByRole('region', {name: 'Согласие на cookies'})).not.toBeInTheDocument();
     });
 
     it('accepts consent, persists it, and mounts Metrika', async () => {

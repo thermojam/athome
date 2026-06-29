@@ -3,15 +3,18 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Quiz } from '@/components/quiz/Quiz';
 import { QUESTIONS, PROFILES } from '@/lib/quiz-data';
+import {clearConsent, writeConsent} from '@/lib/consent';
 
 describe('Quiz (§15.4)', () => {
   beforeEach(() => {
     vi.stubEnv('NEXT_PUBLIC_YM_ID', '99999999');
     vi.stubEnv('NEXT_PUBLIC_TG_USERNAME', 'kamensky_trener');
+    writeConsent('accepted');
   });
   afterEach(() => {
     vi.unstubAllEnvs();
     delete window.ym;
+    clearConsent();
   });
 
   it('renders the first question and 0% progress', () => {
