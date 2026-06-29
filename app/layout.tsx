@@ -2,7 +2,7 @@ import type {Metadata, Viewport} from 'next';
 import localFont from 'next/font/local';
 import {Nunito, JetBrains_Mono} from 'next/font/google';
 import {CONTENT} from '@/lib/quiz-data';
-import {YandexMetrika} from '@/components/analytics/YandexMetrika';
+import {ConsentProvider} from '@/components/analytics/ConsentProvider';
 import './globals.css';
 
 const gerhaus = localFont({
@@ -50,8 +50,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             className={`${gerhaus.variable} ${nunito.variable} ${jbm.variable} antialiased`}
         >
         <body className="min-h-screen flex flex-col">
-        {children}
-        <YandexMetrika/>
+        <ConsentProvider>{children}</ConsentProvider>
         </body>
         </html>
     );

@@ -11,7 +11,7 @@ export default function PrivacyPage() {
     return (
         <main className="mx-auto max-w-3xl px-4 py-20 text-tx">
             <h1 className="font-display text-3xl md:text-4xl">Политика конфиденциальности</h1>
-            <p className="mt-4 text-sm text-tx3">Редакция от 29 мая 2026 г.</p>
+            <p className="mt-4 text-sm text-tx3">Редакция от 29 июня 2026 г.</p>
 
             <section className="mt-10 space-y-4 text-tx2">
                 <h2 className="font-display text-xl text-tx">1. Кто обрабатывает данные</h2>
@@ -44,8 +44,9 @@ export default function PrivacyPage() {
 
                 <h2 className="font-display text-xl text-tx">4. Cookies</h2>
                 <p>
-                    Сайт использует cookies, необходимые для работы Яндекс.Метрики. Их можно отключить в
-                    настройках браузера — это не повлияет на функциональность Сайта.
+                    Аналитические cookies и Яндекс.Метрика используются только после согласия посетителя.
+                    Отказ не влияет на работу квиза, выбор слота и переходы в Telegram. Подробности доступны в
+                    {' '}<a href="/cookies/" className="underline hover:text-tx">Политике cookies</a>.
                 </p>
 
                 <h2 className="font-display text-xl text-tx">5. Права субъекта данных</h2>

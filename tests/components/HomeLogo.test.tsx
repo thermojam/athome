@@ -1,6 +1,8 @@
 import {describe, expect, it, beforeEach, afterEach, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import Home from '@/app/page';
+import {ConsentProvider} from '@/components/analytics/ConsentProvider';
+import {writeConsent} from '@/lib/consent';
 
 describe('Home logo placement', () => {
     beforeEach(() => {
@@ -21,7 +23,12 @@ describe('Home logo placement', () => {
     });
 
     it('uses logo.svg in the hero top-left corner and in the footer', () => {
-        const {container} = render(<Home/>);
+        writeConsent('declined');
+        const {container} = render(
+            <ConsentProvider>
+                <Home/>
+            </ConsentProvider>,
+        );
 
         const heroLogo = container.querySelector('#hero img[alt="Логотип НК"]');
         const footerLogo = container.querySelector('footer img[alt="Логотип НК"]');

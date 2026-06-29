@@ -11,6 +11,7 @@ import {StickyCta} from '@/components/ui/StickyCta';
 import {Bridge} from '@/components/ui/Bridge';
 import {Reveal} from '@/components/ui/Reveal';
 import {CONTENT, BRIDGES} from '@/lib/quiz-data';
+import {CookieSettingsButton} from '@/components/legal/CookieSettingsButton';
 
 export default function Home() {
     return (
@@ -45,9 +46,15 @@ export default function Home() {
                         {CONTENT.footer.name} · {CONTENT.footer.tagline}
                     </p>
                     <p className="mt-5 text-xs text-tx3">
-                        <a href="/privacy" className="underline hover:text-tx2">
+                        <a href="/privacy/" className="underline hover:text-tx2">
                             Политика конфиденциальности
                         </a>
+                        {' · '}
+                        <a href="/cookies/" className="underline hover:text-tx2">
+                            Cookies
+                        </a>
+                        {' · '}
+                        <CookieSettingsButton/>
                     </p>
                 </div>
             </footer>
