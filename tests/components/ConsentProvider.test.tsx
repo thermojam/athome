@@ -32,14 +32,32 @@ function renderProvider() {
 describe('ConsentProvider', () => {
     beforeEach(() => {
         localStorage.clear();
+        HTMLDialogElement.prototype.showModal = function () {
+            this.open = true;
+        };
+        HTMLDialogElement.prototype.close = function () {
+            this.open = false;
+            this.dispatchEvent(new Event('close'));
+        };
     });
 
-    it('hydrates with no decision and does not mount Metrika', async () => {
+    it('hydrates with no decision, shows the capsule, and does not mount Metrika', async () => {
         renderProvider();
 
         await screen.findByText('none');
         expect(screen.queryByTestId('metrika')).not.toBeInTheDocument();
-        expect(screen.getByRole('region', {name: 'Согласие на cookies'})).toBeInTheDocument();
+        expect(screen.getByRole('button', {name: 'Cookies выключены · Настроить'})).toBeInTheDocument();
+        expect(screen.queryByRole('dialog', {name: 'Настройки cookies'})).not.toBeInTheDocument();
+    });
+
+    it('opens settings from the passive capsule', async () => {
+        const user = userEvent.setup();
+        renderProvider();
+        await screen.findByText('none');
+
+        await user.click(screen.getByRole('button', {name: 'Cookies выключены · Настроить'}));
+
+        expect(screen.getByRole('dialog', {name: 'Настройки cookies'})).toBeInTheDocument();
     });
 
     it('hydrates accepted consent and mounts Metrika', async () => {
@@ -48,7 +66,7 @@ describe('ConsentProvider', () => {
 
         await screen.findByText('accepted');
         expect(screen.getByTestId('metrika')).toBeInTheDocument();
-        expect(screen.queryByRole('region', {name: 'Согласие на cookies'})).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', {name: 'Cookies выключены · Настроить'})).not.toBeInTheDocument();
     });
 
     it('hydrates declined consent without mounting Metrika', async () => {
@@ -57,7 +75,7 @@ describe('ConsentProvider', () => {
 
         await screen.findByText('declined');
         expect(screen.queryByTestId('metrika')).not.toBeInTheDocument();
-        expect(screen.queryByRole('region', {name: 'Согласие на cookies'})).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', {name: 'Cookies выключены · Настроить'})).not.toBeInTheDocument();
     });
 
     it('accepts consent, persists it, and mounts Metrika', async () => {
@@ -82,7 +100,7 @@ describe('ConsentProvider', () => {
         expect(localStorage.getItem(CONSENT_STORAGE_KEY)).toContain('declined');
     });
 
-    it('reopens consent settings, clears the decision, and unmounts Metrika', async () => {
+    it('reopens settings, clears the decision, and unmounts Metrika', async () => {
         const user = userEvent.setup();
         writeConsent('accepted');
         renderProvider();
@@ -91,6 +109,7 @@ describe('ConsentProvider', () => {
         await user.click(screen.getByRole('button', {name: 'reopen'}));
 
         await waitFor(() => expect(screen.getByText('none')).toBeInTheDocument());
+        expect(screen.getByRole('dialog', {name: 'Настройки cookies'})).toBeInTheDocument();
         expect(screen.queryByTestId('metrika')).not.toBeInTheDocument();
         expect(localStorage.getItem(CONSENT_STORAGE_KEY)).toBeNull();
     });

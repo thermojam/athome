@@ -23,6 +23,7 @@ const ConsentContext = createContext<ConsentContextValue | undefined>(undefined)
 
 export function ConsentProvider({children}: {children: React.ReactNode}): React.ReactNode {
     const [decision, setDecision] = useState<ConsentState>(undefined);
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(() => {
         // Intentional post-hydration read: localStorage is unavailable during SSR.
@@ -32,24 +33,34 @@ export function ConsentProvider({children}: {children: React.ReactNode}): React.
 
     function accept() {
         writeConsent('accepted');
+        setSettingsOpen(false);
         setDecision('accepted');
     }
 
     function decline() {
         writeConsent('declined');
+        setSettingsOpen(false);
         setDecision('declined');
     }
 
     function reopen() {
         clearConsent();
         setDecision(null);
+        setSettingsOpen(true);
     }
 
     return (
         <ConsentContext.Provider value={{decision, accept, decline, reopen}}>
             {children}
             {decision === 'accepted' && <YandexMetrika/>}
-            {decision === null && <CookieBanner onAccept={accept} onDecline={decline}/>}
+            {decision === null && (
+                <CookieBanner
+                    open={settingsOpen}
+                    onOpenChange={setSettingsOpen}
+                    onAccept={accept}
+                    onDecline={decline}
+                />
+            )}
         </ConsentContext.Provider>
     );
 }
