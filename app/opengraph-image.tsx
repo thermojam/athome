@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import {CONTENT} from '@/lib/quiz-data';
 
+export const dynamic = 'force-static';
 export const size = {width: 1200, height: 630};
 export const contentType = 'image/png';
 
@@ -57,15 +58,15 @@ export default async function Image() {
                         color: '#2CE6FF',
                     }}
                 >
-          <div
-              style={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: 9999,
-                  background: '#2CE6FF',
-                  flexShrink: 0,
-              }}
-          />
+                    <div
+                        style={{
+                            width: 12,
+                            height: 12,
+                            borderRadius: 9999,
+                            background: '#2CE6FF',
+                            flexShrink: 0,
+                        }}
+                    />
                     тренер у дома · разбор за 60 секунд
                 </div>
             </div>
