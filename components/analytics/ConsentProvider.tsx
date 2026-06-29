@@ -2,6 +2,7 @@
 
 import {createContext, useContext, useEffect, useState} from 'react';
 import {YandexMetrika} from '@/components/analytics/YandexMetrika';
+import {CookieBanner} from '@/components/legal/CookieBanner';
 import {
     clearConsent,
     type ConsentDecision,
@@ -46,6 +47,7 @@ export function ConsentProvider({children}: {children: React.ReactNode}): React.
         <ConsentContext.Provider value={{decision, accept, decline, reopen}}>
             {children}
             {decision === 'accepted' && <YandexMetrika/>}
+            {decision === null && <CookieBanner onAccept={accept} onDecline={decline}/>}
         </ConsentContext.Provider>
     );
 }
