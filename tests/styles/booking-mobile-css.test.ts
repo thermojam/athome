@@ -66,10 +66,20 @@ describe('Mobile cosmetic CSS', () => {
         expect(ruleStart).toBeGreaterThanOrEqual(0);
         const ruleEnd = css.indexOf('}', ruleStart);
         const rule = css.slice(ruleStart, ruleEnd);
-        expect(rule).toContain('color: var(--color-cyan)');
-        expect(rule).toContain('background: rgba(44,230,255,0.08)');
-        expect(rule).toContain('border-color: rgba(44,230,255,0.62)');
-        expect(rule).toContain('0 0 0 1px rgba(44,230,255,0.55)');
-        expect(rule).toContain('0 0 24px rgba(44,230,255,0.28)');
+        const compact = (value: string) => value.replace(/\s+/g, '');
+        const compactRule = compact(rule);
+        expect(compactRule).toContain(compact('color: var(--color-cyan)'));
+        expect(compactRule).toContain(
+            compact('background: rgba(44, 230, 255, 0.08)'),
+        );
+        expect(compactRule).toContain(
+            compact('border-color: rgba(44, 230, 255, 0.62)'),
+        );
+        expect(compactRule).toContain(
+            compact('0 0 0 1px rgba(44, 230, 255, 0.55)'),
+        );
+        expect(compactRule).toContain(
+            compact('0 0 24px rgba(44, 230, 255, 0.28)'),
+        );
     });
 });
