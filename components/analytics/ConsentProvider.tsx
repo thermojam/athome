@@ -19,47 +19,69 @@ type ConsentContextValue = {
     reopen: () => void;
 };
 
+const INTERACTION_EVENTS: Array<keyof WindowEventMap> = [
+    'scroll',
+    'touchstart',
+    'pointerdown',
+    'keydown',
+];
+
 const ConsentContext = createContext<ConsentContextValue | undefined>(undefined);
 
 export function ConsentProvider({children}: {children: React.ReactNode}): React.ReactNode {
     const [decision, setDecision] = useState<ConsentState>(undefined);
-    const [settingsOpen, setSettingsOpen] = useState(false);
+    const [bannerVisible, setBannerVisible] = useState(false);
 
     useEffect(() => {
+        const storedDecision = readConsent();
         // Intentional post-hydration read: localStorage is unavailable during SSR.
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setDecision(readConsent());
+        setDecision(storedDecision);
+
+        if (storedDecision !== null) return;
+
+        function removeRevealListeners() {
+            for (const eventName of INTERACTION_EVENTS) {
+                window.removeEventListener(eventName, reveal);
+            }
+        }
+
+        function reveal() {
+            setBannerVisible(true);
+            removeRevealListeners();
+        }
+
+        for (const eventName of INTERACTION_EVENTS) {
+            window.addEventListener(eventName, reveal, {passive: true});
+        }
+
+        return removeRevealListeners;
     }, []);
 
     function accept() {
         writeConsent('accepted');
-        setSettingsOpen(false);
+        setBannerVisible(false);
         setDecision('accepted');
     }
 
     function decline() {
         writeConsent('declined');
-        setSettingsOpen(false);
+        setBannerVisible(false);
         setDecision('declined');
     }
 
     function reopen() {
         clearConsent();
         setDecision(null);
-        setSettingsOpen(true);
+        setBannerVisible(true);
     }
 
     return (
         <ConsentContext.Provider value={{decision, accept, decline, reopen}}>
             {children}
             {decision === 'accepted' && <YandexMetrika/>}
-            {decision === null && (
-                <CookieBanner
-                    open={settingsOpen}
-                    onOpenChange={setSettingsOpen}
-                    onAccept={accept}
-                    onDecline={decline}
-                />
+            {decision === null && bannerVisible && (
+                <CookieBanner onAccept={accept} onDecline={decline}/>
             )}
         </ConsentContext.Provider>
     );
