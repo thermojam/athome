@@ -27,6 +27,7 @@ const jbm = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://trenerprimorskiy.ru'),
     title: CONTENT.meta.title,
     description: CONTENT.meta.description,
     openGraph: {
