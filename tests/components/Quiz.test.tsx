@@ -24,6 +24,11 @@ describe('Quiz (§15.4)', () => {
     expect(bar).toHaveAttribute('aria-valuenow', '0');
   });
 
+  it('keeps the bottom border on the third answer option', () => {
+    render(<Quiz />);
+    expect(screen.getAllByRole('button')[2]).not.toHaveClass('hairline');
+  });
+
   it('advances to the next question on answer', async () => {
     const user = userEvent.setup();
     render(<Quiz />);

@@ -24,7 +24,7 @@ export function QuizQuestion({
                         key={opt.label}
                         type="button"
                         onClick={() => onAnswer(opt.scores)}
-                        className="card-sm hairline flex flex-col items-start gap-1 text-left transition-all hover:!border-cyan"
+                        className="card-sm flex flex-col items-start gap-1 text-left transition-all hover:!border-cyan"
                         style={{borderRadius: 'var(--radius-md)'}}
                     >
                         <span className="text-base text-tx">{opt.label}</span>

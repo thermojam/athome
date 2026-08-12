@@ -204,6 +204,11 @@ body {
         border-color: rgba(255, 255, 255, 0.22);
     }
 
+    .hero .btn-secondary {
+        -webkit-backdrop-filter: blur(var(--blur-md));
+        backdrop-filter: blur(var(--blur-md));
+    }
+
     /* пилюли (hero/booking/list-теги) */
     .pill {
         display: inline-flex;
