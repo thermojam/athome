@@ -11,26 +11,31 @@ export default function CookiesPage() {
     return (
         <main className="mx-auto max-w-3xl px-4 py-20 text-tx">
             <h1 className="font-display text-3xl md:text-4xl">Политика cookies</h1>
-            <p className="mt-4 text-sm text-tx3">Редакция от 29 июня 2026 г.</p>
+            <p className="mt-4 text-sm text-tx3">Редакция от 12 августа 2026 г.</p>
 
             <section className="mt-10 space-y-4 text-tx2">
                 <h2 className="font-display text-xl text-tx">1. Что такое cookies и localStorage</h2>
                 <p>
+                    Настоящая политика действует для сайта
+                    {' '}<a className="underline hover:text-tx" href="https://trenerprimorskiy.ru/"
+                             target="_blank" rel="noopener noreferrer">trenerprimorskiy.ru</a>.
                     Cookies — небольшие файлы, которые сайт и подключённые сервисы сохраняют в браузере.
                     localStorage — хранилище браузера, в котором данные остаются между посещениями сайта.
                 </p>
 
                 <h2 className="font-display text-xl text-tx">2. Какие технологии используются</h2>
                 <p>
-                    Сайт сохраняет в localStorage решение посетителя об аналитике. После согласия Яндекс.Метрика
-                    может использовать _ym_uid, _ym_d, _ym_isad, _ym_visorc_*, а также localStorage-свойства
-                    Метрики. Актуальный перечень и сроки хранения публикует Яндекс.
+                    До согласия аналитические cookies и Яндекс.Метрика не используются. После выбора посетителя
+                    Сайт сохраняет в localStorage решение об аналитике, его версию и время выбора на срок 365 дней.
+                    После согласия Яндекс.Метрика может использовать _ym_uid, _ym_d, _ym_isad, _ym_visorc_*,
+                    а также localStorage-свойства Метрики. Актуальный перечень и сроки хранения публикует Яндекс.
                 </p>
 
                 <h2 className="font-display text-xl text-tx">3. Яндекс.Метрика и Вебвизор</h2>
                 <p>
                     Яндекс.Метрика и Вебвизор помогают оценивать посещаемость, источники переходов и
-                    взаимодействия со страницей, чтобы улучшать её содержание и удобство.
+                    взаимодействия со страницей, чтобы улучшать её содержание и удобство. Метрика подключается
+                    только после согласия посетителя.
                 </p>
 
                 <h2 className="font-display text-xl text-tx">4. Согласие и отказ</h2>

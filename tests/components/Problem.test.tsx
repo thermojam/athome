@@ -29,4 +29,11 @@ describe('Problem (SPEC v3.3 §5.5)', () => {
             expect(found, `icon ${key} expected`).not.toBeNull();
         }
     });
+
+    it('выводит резюме без плашки и сохраняет cyan-цвет', () => {
+        render(<Problem/>);
+        const summary = screen.getByText(/Регулярность ломается не от слабого характера/);
+        expect(summary).toHaveClass('text-cyan');
+        expect(summary.closest('.card')).toBeNull();
+    });
 });

@@ -50,12 +50,9 @@ export function Problem() {
                 })}
             </div>
 
-            <div className="card mt-10">
-                <p className="text-base text-tx">
-                    <span className="text-cyan">{summaryLead}</span>{' '}
-                    <span className="text-tx2">{summaryRest}</span>
-                </p>
-            </div>
+            <p className="mt-10 text-base text-cyan">
+                {summaryLead} {summaryRest}
+            </p>
         </section>
     );
 }

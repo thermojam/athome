@@ -37,5 +37,7 @@ describe('Home logo placement', () => {
 
         const heroLogoWrap = heroLogo?.parentElement;
         expect(heroLogoWrap).toHaveClass('absolute', 'left-0', 'right-0', 'top-3', 'max-w-[var(--container)]', 'px-4');
+
+        expect(footerLogo?.parentElement).toHaveAttribute('href', '#hero');
     });
 });
