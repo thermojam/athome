@@ -974,7 +974,7 @@ body {
         flex-direction: column;
         align-items: stretch;
         gap: 14px;
-        padding: 18px 16px calc(58px + env(safe-area-inset-bottom, 0px));
+        padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
     }
 
     .cookie-consent-actions {
